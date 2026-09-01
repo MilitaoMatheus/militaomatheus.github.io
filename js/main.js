@@ -153,4 +153,33 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
+
+  // 6. Alternância de Tema (Dark / Light Mode) com Persistência
+  const themeToggle = document.getElementById('theme-toggle');
+
+  const updateTheme = (theme) => {
+    document.documentElement.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem('theme', theme);
+    } catch (e) {
+      // Ignora erro se cookies/storage desabilitados
+    }
+
+    if (themeToggle) {
+      const isLight = theme === 'light';
+      themeToggle.setAttribute('title', isLight ? 'Alternar para Modo Escuro' : 'Alternar para Modo Claro');
+      themeToggle.setAttribute('aria-label', isLight ? 'Alternar para Modo Escuro' : 'Alternar para Modo Claro');
+    }
+  };
+
+  if (themeToggle) {
+    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
+    updateTheme(currentTheme);
+
+    themeToggle.addEventListener('click', () => {
+      const active = document.documentElement.getAttribute('data-theme') || 'dark';
+      const nextTheme = active === 'light' ? 'dark' : 'light';
+      updateTheme(nextTheme);
+    });
+  }
 });

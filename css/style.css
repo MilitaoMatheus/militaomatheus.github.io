@@ -1,10 +1,11 @@
 /* ==========================================================================
    PORTFÓLIO PROFISSIONAL - MATHEUS MILITÃO
    Design System: Preto Obsidiana & Ouro Nobre (Luxury Tech / Cyber Gold)
+   Suporte a Modo Escuro (Padrão) & Modo Claro (Marfim & Ouro)
    ========================================================================== */
 
 :root {
-  /* Cores Base - Preto Obsidiana & Carvão Nobre */
+  /* Cores Base - Preto Obsidiana & Carvão Nobre (Dark Padrão) */
   --bg-dark: #050507;
   --bg-surface: #0a0a0f;
   --bg-card: rgba(14, 14, 18, 0.82);
@@ -34,6 +35,17 @@
   --shadow-card: 0 12px 36px -10px rgba(0, 0, 0, 0.8);
   --shadow-glow: 0 0 25px rgba(212, 175, 55, 0.15);
   
+  /* Elementos de Interface */
+  --nav-bg: rgba(5, 5, 7, 0.88);
+  --nav-bg-scrolled: rgba(5, 5, 7, 0.96);
+  --nav-mobile-bg: rgba(5, 5, 7, 0.98);
+  --terminal-bg: #08080c;
+  --terminal-header: #111116;
+  --terminal-text: #e5e5e5;
+  --input-bg: rgba(8, 8, 12, 0.85);
+  --footer-bg: #030304;
+  --pattern-box-bg: #09090d;
+  
   /* Fontes */
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   --font-mono: 'JetBrains Mono', 'Fira Code', 'Courier New', monospace;
@@ -42,6 +54,163 @@
   --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   --transition-smooth: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Modo Claro (Light Theme) - Champagne, Marfim & Ouro Intenso */
+[data-theme="light"] {
+  --bg-dark: #fcfbfa;
+  --bg-surface: #f4f2ee;
+  --bg-card: rgba(255, 255, 255, 0.92);
+  --bg-card-hover: #ffffff;
+  --bg-card-subtle: rgba(184, 134, 11, 0.04);
+  
+  --color-primary: #b8860b;        /* Ouro Âmbar de alto contraste */
+  --color-primary-dark: #8c6508;
+  --color-primary-light: #996515;
+  --color-primary-glow: rgba(184, 134, 11, 0.2);
+  
+  --color-accent-amber: #d97706;
+  --color-accent-gold: #b8860b;
+  --color-accent-teal: #059669;
+  
+  --text-primary: #18181b;         /* Carvão profundo de alta legibilidade */
+  --text-secondary: #52525b;       /* Cinza pedra neutro */
+  --text-muted: #71717a;
+  --text-bright: #09090b;
+  
+  --border-subtle: rgba(184, 134, 11, 0.22);
+  --border-focus: rgba(184, 134, 11, 0.55);
+  --border-glow: rgba(217, 119, 6, 0.25);
+  --shadow-card: 0 10px 30px -8px rgba(120, 113, 108, 0.16);
+  --shadow-glow: 0 0 25px rgba(184, 134, 11, 0.1);
+  
+  --nav-bg: rgba(252, 251, 250, 0.92);
+  --nav-bg-scrolled: rgba(252, 251, 250, 0.98);
+  --nav-mobile-bg: rgba(252, 251, 250, 0.99);
+  --terminal-bg: #18181b;
+  --terminal-header: #27272a;
+  --terminal-text: #f4f4f5;
+  --input-bg: #ffffff;
+  --footer-bg: #f4f2ee;
+  --pattern-box-bg: #f3f0e8;
+}
+
+/* Transições Suaves na Alternância de Tema */
+body, 
+.navbar, 
+.pillar-card, 
+.about-card, 
+.skill-category-card, 
+.project-card, 
+.timeline-card, 
+.contact-info-card, 
+.contact-form-card, 
+.footer,
+.form-control,
+.btn-outline,
+.theme-toggle-btn {
+  transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease, box-shadow 0.35s ease;
+}
+
+/* Customizações Específicas do Modo Claro */
+[data-theme="light"] .bg-ambient-light {
+  background: 
+    radial-gradient(circle at 18% 18%, rgba(212, 175, 55, 0.08) 0%, transparent 50%),
+    radial-gradient(circle at 82% 65%, rgba(245, 158, 11, 0.06) 0%, transparent 55%),
+    radial-gradient(circle at 50% 92%, rgba(184, 134, 11, 0.05) 0%, transparent 50%);
+}
+
+[data-theme="light"] .hero-title span.highlight,
+[data-theme="light"] .section-title .gradient-text {
+  background: linear-gradient(135deg, #18181b 0%, #b8860b 55%, #d97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+[data-theme="light"] .project-image-box {
+  background: var(--pattern-box-bg);
+}
+
+[data-theme="light"] .project-mockup-pattern span[style*="#fef08a"] {
+  color: #8c6508 !important;
+}
+
+[data-theme="light"] .project-badge-top {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(184, 134, 11, 0.35);
+  color: #8c6508;
+}
+
+[data-theme="light"] .status-badge {
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(184, 134, 11, 0.3);
+  color: #57534e;
+}
+
+[data-theme="light"] .tech-tag,
+[data-theme="light"] .tech-chip {
+  background: rgba(184, 134, 11, 0.08);
+  border-color: rgba(184, 134, 11, 0.25);
+  color: #8c6508;
+}
+
+[data-theme="light"] .tech-tag:hover,
+[data-theme="light"] .tech-chip:hover {
+  background: rgba(184, 134, 11, 0.16);
+  color: #5b4105;
+}
+
+[data-theme="light"] .about-text {
+  color: #3f3f46;
+}
+
+[data-theme="light"] .about-text strong {
+  color: #18181b;
+}
+
+[data-theme="light"] .btn-outline {
+  background: #ffffff;
+  border-color: rgba(184, 134, 11, 0.3);
+  color: var(--text-primary);
+}
+
+[data-theme="light"] .btn-outline:hover {
+  background: #fcfbfa;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+[data-theme="light"] .form-control {
+  background: #ffffff;
+  color: #18181b;
+  border-color: rgba(184, 134, 11, 0.25);
+}
+
+[data-theme="light"] .contact-item {
+  background: #ffffff;
+  border-color: rgba(184, 134, 11, 0.2);
+}
+
+[data-theme="light"] .contact-value {
+  color: #18181b;
+}
+
+[data-theme="light"] .footer {
+  background: var(--footer-bg);
+  border-top-color: var(--border-subtle);
+  color: var(--text-secondary);
+}
+
+[data-theme="light"] .timeline-card {
+  background: var(--bg-card);
+}
+
+[data-theme="light"] .timeline-title {
+  color: #18181b;
+}
+
+[data-theme="light"] .timeline-desc {
+  color: #52525b;
 }
 
 /* Reset Global & Acessibilidade */
@@ -186,7 +355,7 @@ h1, h2, h3, h4 {
   left: 0;
   right: 0;
   height: 72px;
-  background: rgba(5, 5, 7, 0.88);
+  background: var(--nav-bg);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   border-bottom: 1px solid var(--border-subtle);
@@ -195,9 +364,9 @@ h1, h2, h3, h4 {
 }
 
 .navbar.scrolled {
-  background: rgba(5, 5, 7, 0.96);
+  background: var(--nav-bg-scrolled);
   border-bottom-color: rgba(212, 175, 55, 0.3);
-  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 4px 25px rgba(0, 0, 0, 0.5);
 }
 
 .nav-container {
@@ -280,6 +449,60 @@ h1, h2, h3, h4 {
 
 .nav-link:hover::after, .nav-link.active::after {
   width: 100%;
+}
+
+.nav-right-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.theme-toggle-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 9px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: var(--transition-normal);
+  padding: 0;
+}
+
+.theme-toggle-btn:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--color-primary);
+  transform: scale(1.05);
+  box-shadow: 0 0 15px var(--color-primary-glow);
+}
+
+.theme-toggle-btn svg {
+  width: 20px;
+  height: 20px;
+  transition: transform 0.3s ease;
+}
+
+.theme-toggle-btn:hover svg {
+  transform: rotate(25deg);
+}
+
+.theme-icon-sun {
+  display: block;
+}
+
+.theme-icon-moon {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon-sun {
+  display: none;
+}
+
+[data-theme="light"] .theme-icon-moon {
+  display: block;
 }
 
 .nav-actions {

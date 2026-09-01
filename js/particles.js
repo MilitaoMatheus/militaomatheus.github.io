@@ -69,9 +69,12 @@
     }
 
     draw() {
+      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = this.color + this.baseAlpha + ')';
+      const alpha = isLight ? Math.min(this.baseAlpha * 1.3, 0.6) : this.baseAlpha;
+      const baseColor = isLight ? 'rgba(184, 134, 11,' : this.color;
+      ctx.fillStyle = baseColor + alpha + ')';
       ctx.fill();
     }
   }
@@ -84,6 +87,10 @@
   }
 
   function connectParticles() {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const goldColor = isLight ? 'rgba(184, 134, 11,' : 'rgba(212, 175, 55,';
+    const maxOpacity = isLight ? 0.28 : 0.22;
+
     for (let i = 0; i < particles.length; i++) {
       for (let j = i + 1; j < particles.length; j++) {
         let dx = particles[i].x - particles[j].x;
@@ -91,8 +98,8 @@
         let distance = Math.sqrt(dx * dx + dy * dy);
 
         if (distance < maxDistance) {
-          let opacity = (1 - distance / maxDistance) * 0.22;
-          ctx.strokeStyle = `rgba(212, 175, 55, ${opacity})`;
+          let opacity = (1 - distance / maxDistance) * maxOpacity;
+          ctx.strokeStyle = `${goldColor} ${opacity})`;
           ctx.lineWidth = 0.75;
           ctx.beginPath();
           ctx.moveTo(particles[i].x, particles[i].y);

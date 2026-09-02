@@ -1,12 +1,13 @@
 /**
- * Portfólio Minimalista & Editorial - Matheus Militão
- * Interatividades: Carrossel Touch-Friendly, Floating Dock, Dark/Light Mode & Cópia de E-mail
+ * Portfólio Profissional - Matheus Militão
+ * Lógica de Interface conforme Briefing Oficial
+ * Recursos: Navbar Scroll Spy, Mobile Drawer, Filtro de Projetos, Dark/Light Mode e Formulário
  */
 
 document.addEventListener('DOMContentLoaded', () => {
 
   /* =========================================================================
-     1. TEMA CLARO / ESCURO (DARK / LIGHT MODE COM PERSISTÊNCIA)
+     1. TEMA CLARO / ESCURO (DARK/LIGHT MODE COM PERSISTÊNCIA)
      ========================================================================= */
   const themeToggle = document.getElementById('theme-toggle');
 
@@ -35,230 +36,155 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* =========================================================================
-     2. FLOATING DOCK NAVBAR & GAVETA MOBILE
+     2. NAVBAR: SCROLL EFFECT & SCROLL SPY
      ========================================================================= */
-  const menuToggle = document.querySelector('.dock-menu-toggle');
-  const drawer = document.getElementById('dock-drawer');
-  const drawerItems = document.querySelectorAll('.drawer-item');
-  const dockLinks = document.querySelectorAll('.dock-link');
+  const navbar = document.getElementById('navbar');
+  const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section[id]');
 
-  if (menuToggle && drawer) {
-    menuToggle.addEventListener('click', () => {
-      const isOpen = drawer.classList.toggle('open');
-      menuToggle.setAttribute('aria-expanded', isOpen);
-      menuToggle.innerHTML = isOpen
-        ? `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`
-        : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
-    });
+  const handleScroll = () => {
+    const scrollY = window.scrollY;
 
-    drawerItems.forEach((item) => {
-      item.addEventListener('click', () => {
-        drawer.classList.remove('open');
-        menuToggle.setAttribute('aria-expanded', 'false');
-        menuToggle.innerHTML = `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
-      });
-    });
-  }
+    // Efeito de sombra sutil na navbar ao rolar
+    if (navbar) {
+      if (scrollY > 30) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
 
-  // Active Link Tracker
-  window.addEventListener('scroll', () => {
-    let current = '';
+    // Scroll Spy (Marca link ativo)
+    let currentSectionId = '';
     sections.forEach((section) => {
-      const sectionTop = section.offsetTop - 140;
+      const sectionTop = section.offsetTop - 120;
       const sectionHeight = section.offsetHeight;
-      if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-        current = section.getAttribute('id');
+      if (scrollY >= sectionTop && scrollY < sectionTop + sectionHeight) {
+        currentSectionId = section.getAttribute('id');
       }
     });
 
-    dockLinks.forEach((link) => {
+    navLinks.forEach((link) => {
       link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
+      if (link.getAttribute('href') === `#${currentSectionId}`) {
         link.classList.add('active');
       }
     });
-  }, { passive: true });
-
-  /* =========================================================================
-     3. CARROSSEL INTERATIVO DE PROJETOS (SLIM, SWIPE & CONTROLS)
-     ========================================================================= */
-  const carouselTrack = document.getElementById('carousel-track');
-  const prevBtn = document.getElementById('carousel-prev');
-  const nextBtn = document.getElementById('carousel-next');
-  const counterCurrent = document.getElementById('counter-current');
-  const counterTotal = document.getElementById('counter-total');
-  const dotsContainer = document.getElementById('carousel-dots');
-  const filterTabs = document.querySelectorAll('.filter-tab');
-
-  if (carouselTrack) {
-    let slides = Array.from(carouselTrack.querySelectorAll('.carousel-card'));
-    let activeSlides = [...slides];
-    let currentIndex = 0;
-
-    const setupDots = () => {
-      dotsContainer.innerHTML = '';
-      activeSlides.forEach((_, idx) => {
-        const dot = document.createElement('button');
-        dot.className = `carousel-dot ${idx === currentIndex ? 'active' : ''}`;
-        dot.setAttribute('aria-label', `Ir para slide ${idx + 1}`);
-        dot.addEventListener('click', () => scrollToIndex(idx));
-        dotsContainer.appendChild(dot);
-      });
-      updateMeta();
-    };
-
-    const updateMeta = () => {
-      const total = activeSlides.length;
-      if (counterTotal) counterTotal.textContent = total < 10 ? `0${total}` : total;
-      if (counterCurrent) {
-        const currentDisplay = Math.min(currentIndex + 1, total);
-        counterCurrent.textContent = currentDisplay < 10 ? `0${currentDisplay}` : currentDisplay;
-      }
-
-      if (prevBtn) prevBtn.disabled = currentIndex === 0;
-      if (nextBtn) nextBtn.disabled = currentIndex >= activeSlides.length - 1;
-
-      const dots = dotsContainer.querySelectorAll('.carousel-dot');
-      dots.forEach((dot, idx) => {
-        dot.classList.toggle('active', idx === currentIndex);
-      });
-    };
-
-    const scrollToIndex = (index) => {
-      if (index < 0 || index >= activeSlides.length) return;
-      currentIndex = index;
-      const target = activeSlides[currentIndex];
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'nearest',
-          inline: 'start'
-        });
-      }
-      updateMeta();
-    };
-
-    if (prevBtn) {
-      prevBtn.addEventListener('click', () => {
-        if (currentIndex > 0) scrollToIndex(currentIndex - 1);
-      });
-    }
-
-    if (nextBtn) {
-      nextBtn.addEventListener('click', () => {
-        if (currentIndex < activeSlides.length - 1) scrollToIndex(currentIndex + 1);
-      });
-    }
-
-    // Scroll listener para sincronizar contadores em arrastos por touch
-    let scrollDebounce;
-    carouselTrack.addEventListener('scroll', () => {
-      clearTimeout(scrollDebounce);
-      scrollDebounce = setTimeout(() => {
-        const trackRect = carouselTrack.getBoundingClientRect();
-        let closestIndex = 0;
-        let minDiff = Infinity;
-
-        activeSlides.forEach((slide, idx) => {
-          const slideRect = slide.getBoundingClientRect();
-          const diff = Math.abs(slideRect.left - trackRect.left);
-          if (diff < minDiff) {
-            minDiff = diff;
-            closestIndex = idx;
-          }
-        });
-
-        if (closestIndex !== currentIndex) {
-          currentIndex = closestIndex;
-          updateMeta();
-        }
-      }, 50);
-    }, { passive: true });
-
-    // Filtros de Categoria
-    filterTabs.forEach((tab) => {
-      tab.addEventListener('click', () => {
-        filterTabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-
-        const filter = tab.getAttribute('data-filter');
-
-        slides.forEach((slide) => {
-          const category = slide.getAttribute('data-category');
-          if (filter === 'all' || category === filter) {
-            slide.classList.remove('hidden');
-          } else {
-            slide.classList.add('hidden');
-          }
-        });
-
-        activeSlides = slides.filter(s => !s.classList.contains('hidden'));
-        currentIndex = 0;
-        setupDots();
-        scrollToIndex(0);
-      });
-    });
-
-    // Navegação via teclado
-    window.addEventListener('keydown', (e) => {
-      const projectsSection = document.getElementById('projetos');
-      if (!projectsSection) return;
-      const rect = projectsSection.getBoundingClientRect();
-      const inView = rect.top < window.innerHeight && rect.bottom > 0;
-
-      if (inView) {
-        if (e.key === 'ArrowLeft' && currentIndex > 0) {
-          scrollToIndex(currentIndex - 1);
-        } else if (e.key === 'ArrowRight' && currentIndex < activeSlides.length - 1) {
-          scrollToIndex(currentIndex + 1);
-        }
-      }
-    });
-
-    setupDots();
-  }
-
-  /* =========================================================================
-     4. COPIAR E-MAIL (1 CLIQUE) COM FEEDBACK DISCRETO
-     ========================================================================= */
-  const copyHeroBtn = document.getElementById('copy-email-btn');
-  const copyHeroText = document.getElementById('copy-btn-text');
-  const emailLink = document.querySelector('.email-display-link');
-  const copyToast = document.getElementById('copy-toast');
-  const emailAddress = 'matheussmilitao@gmail.com';
-
-  const copyEmail = async (elementTrigger) => {
-    try {
-      await navigator.clipboard.writeText(emailAddress);
-    } catch (err) {
-      const ta = document.createElement('textarea');
-      ta.value = emailAddress;
-      document.body.appendChild(ta);
-      ta.select();
-      document.execCommand('copy');
-      document.body.removeChild(ta);
-    }
-
-    if (elementTrigger === 'hero' && copyHeroText) {
-      copyHeroText.textContent = 'Copiado! ✓';
-      setTimeout(() => { copyHeroText.textContent = 'Copiar E-mail'; }, 2500);
-    }
-
-    if (copyToast) {
-      copyToast.style.display = 'inline-block';
-      setTimeout(() => { copyToast.style.display = 'none'; }, 2500);
-    }
   };
 
-  if (copyHeroBtn) {
-    copyHeroBtn.addEventListener('click', () => copyEmail('hero'));
+  window.addEventListener('scroll', handleScroll, { passive: true });
+  handleScroll();
+
+  /* =========================================================================
+     3. MENU MOBILE (HAMBURGER DRAWER)
+     ========================================================================= */
+  const hamburgerBtn = document.getElementById('hamburger-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const mobileLinks = document.querySelectorAll('.mobile-link');
+
+  if (hamburgerBtn && mobileMenu) {
+    hamburgerBtn.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      hamburgerBtn.setAttribute('aria-expanded', isOpen);
+      hamburgerBtn.innerHTML = isOpen
+        ? `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`
+        : `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+    });
+
+    mobileLinks.forEach((link) => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        hamburgerBtn.setAttribute('aria-expanded', 'false');
+        hamburgerBtn.innerHTML = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+      });
+    });
   }
 
-  if (emailLink) {
-    emailLink.addEventListener('click', (e) => {
-      // Se o usuário clicar com o botão esquerdo, copia e abre o cliente
-      copyEmail('contact');
+  /* =========================================================================
+     4. FILTROS DE PROJETOS (SEÇÃO 17 DO BRIEFING)
+     ========================================================================= */
+  const filterButtons = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  filterButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      filterButtons.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      const filter = btn.getAttribute('data-filter');
+
+      projectCards.forEach((card) => {
+        const category = card.getAttribute('data-category');
+        if (filter === 'all' || category === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+
+  /* =========================================================================
+     5. CÓPIA RÁPIDA DE E-MAIL COM FEEDBACK
+     ========================================================================= */
+  const copyBtn = document.getElementById('copy-email-btn');
+  const copyToast = document.getElementById('copy-toast');
+  const emailTarget = 'matheussmilitao@gmail.com';
+
+  if (copyBtn && copyToast) {
+    copyBtn.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(emailTarget);
+      } catch (err) {
+        const temp = document.createElement('textarea');
+        temp.value = emailTarget;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+      }
+
+      copyToast.style.display = 'block';
+      setTimeout(() => {
+        copyToast.style.display = 'none';
+      }, 3000);
+    });
+  }
+
+  /* =========================================================================
+     6. FORMULÁRIO DE CONTATO (SIMPLES - SEÇÃO 19 DO BRIEFING)
+     ========================================================================= */
+  const contactForm = document.getElementById('contact-form');
+
+  if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const name = document.getElementById('form-name').value.trim();
+      const email = document.getElementById('form-email').value.trim();
+      const message = document.getElementById('form-message').value.trim();
+
+      if (!name || !email || !message) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+      }
+
+      const subject = `Contato Portfólio - ${name}`;
+      const body = `Olá Matheus,\n\nMeu nome é ${name} (${email}).\n\nMensagem:\n${message}\n\nEnviado através do seu site de portfólio.`;
+
+      const mailtoUrl = `mailto:${emailTarget}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailtoUrl;
+
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '✓ Abrindo e-mail...';
+        submitBtn.disabled = true;
+        setTimeout(() => {
+          submitBtn.innerHTML = originalText;
+          submitBtn.disabled = false;
+          contactForm.reset();
+        }, 3500);
+      }
     });
   }
 

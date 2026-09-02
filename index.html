@@ -3,29 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Matheus Militão — Engenheiro de Software</title>
+  <title>Matheus Militão — Desenvolvedor de Software</title>
   
   <!-- SEO & Metatags -->
-  <meta name="description" content="Portfólio de Matheus Militão - Desenvolvedor de Software especialista em Backend, Mobile, Bancos de Dados e Otimização de Processos. FATEC Osasco e ETEC Basilides de Godoy.">
-  <meta name="keywords" content="Matheus Militão, Engenheiro de Software, Backend, Java, Python, PHP, Flutter, MySQL, FATEC, ETEC">
+  <meta name="description" content="Portfólio de Matheus Militão — Desenvolvedor de Software. Backend, Mobile, Bancos de Dados e Soluções Digitais.">
+  <meta name="keywords" content="Matheus Militão, Desenvolvedor de Software, Backend, Java, Python, PHP, Flutter, MySQL, Portfólio">
   <meta name="author" content="Matheus Militão da Silva">
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Matheus Militão — Engenheiro de Software">
-  <meta property="og:description" content="Engenharia de software com foco em precisão, arquitetura segura e sistemas eficientes.">
+  <meta property="og:title" content="Matheus Militão — Desenvolvedor de Software">
+  <meta property="og:description" content="Desenvolvedor apaixonado por tecnologia, desenvolvimento de software e criação de soluções digitais.">
   <meta property="og:url" content="https://militaomatheus.github.io/">
 
-  <!-- Tipografia Plus Jakarta Sans & JetBrains Mono -->
+  <!-- Tipografia: Plus Jakarta Sans & JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Script Anti-FOUC de Tema -->
+  <!-- Inicializador Anti-FOUC de Tema -->
   <script>
     (function() {
-      const savedTheme = localStorage.getItem('theme');
-      if (savedTheme === 'light') {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'light') {
         document.documentElement.setAttribute('data-theme', 'light');
       } else {
         document.documentElement.setAttribute('data-theme', 'dark');
@@ -38,526 +38,960 @@
 </head>
 <body>
 
-  <!-- Canvas Sutil de Fundo & Iluminação Minimalista -->
+  <!-- Canvas de Fundo & Iluminação Sutil -->
   <canvas id="particles-canvas"></canvas>
-  <div class="ambient-glow"></div>
+  <div class="bg-glow"></div>
 
   <!-- =========================================================================
-       FLOATING DOCK (Navegação em Cápsula Minimalista)
+       1. NAVBAR (Fixa no topo, responsiva e com efeito discreto ao scroll)
        ========================================================================= -->
-  <div class="dock-wrapper">
-    <header class="dock" id="dock">
-      <a href="#hero" class="dock-brand" aria-label="Início">
-        <span class="dock-brand-dot"></span>
-        <span class="dock-brand-name">Militão</span>
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#hero" class="nav-brand" aria-label="Início">
+        <span class="brand-symbol">&lt;/&gt;</span>
+        <span class="brand-text">Matheus Militão</span>
       </a>
 
-      <nav class="dock-nav" aria-label="Navegação">
-        <ul class="dock-menu">
-          <li><a href="#sobre" class="dock-link">Sobre</a></li>
-          <li><a href="#projetos" class="dock-link">Projetos</a></li>
-          <li><a href="#trajetoria" class="dock-link">Trajetória</a></li>
-          <li><a href="#habilidades" class="dock-link">Stack</a></li>
-          <li><a href="#contato" class="dock-link">Contato</a></li>
+      <nav class="nav-desktop" aria-label="Navegação principal">
+        <ul class="nav-links">
+          <li><a href="#hero" class="nav-link active">Início</a></li>
+          <li><a href="#sobre" class="nav-link">Sobre</a></li>
+          <li><a href="#skills" class="nav-link">Skills</a></li>
+          <li><a href="#experiencia" class="nav-link">Experiência</a></li>
+          <li><a href="#projetos" class="nav-link">Projetos</a></li>
+          <li><a href="#contato" class="nav-link">Contato</a></li>
         </ul>
       </nav>
 
-      <div class="dock-actions">
-        <!-- Alternador Dark / Light -->
-        <button id="theme-toggle" class="dock-action-btn" aria-label="Alternar tema claro/escuro" title="Alternar tema">
-          <svg class="theme-icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-          <svg class="theme-icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+      <div class="nav-actions">
+        <!-- Alternador Dark / Light Mode -->
+        <button id="theme-toggle" class="btn-icon-theme" aria-label="Alternar modo claro/escuro" title="Alternar tema">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
         </button>
 
-        <!-- Link LinkedIn -->
-        <a href="https://www.linkedin.com/in/matheusmilitao" target="_blank" rel="noopener noreferrer" class="dock-cta-btn" aria-label="LinkedIn">
-          <span>LinkedIn</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+        <!-- CTA Principal da Navbar -->
+        <a href="#contato" class="btn-nav-cta">
+          Vamos conversar
         </a>
 
-        <!-- Menu Mobile Toggle -->
-        <button class="dock-menu-toggle" aria-label="Abrir menu" aria-expanded="false">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
+        <!-- Botão Menu Mobile -->
+        <button class="btn-hamburger" id="hamburger-btn" aria-label="Abrir menu móvel" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
         </button>
       </div>
-    </header>
+    </div>
 
     <!-- Gaveta Mobile -->
-    <div class="dock-drawer" id="dock-drawer">
-      <ul class="dock-drawer-menu">
-        <li><a href="#sobre" class="drawer-item">Sobre</a></li>
-        <li><a href="#projetos" class="drawer-item">Projetos</a></li>
-        <li><a href="#trajetoria" class="drawer-item">Trajetória</a></li>
-        <li><a href="#habilidades" class="drawer-item">Stack Técnica</a></li>
-        <li><a href="#contato" class="drawer-item">Contato</a></li>
-        <li class="drawer-cta-item">
-          <a href="https://www.linkedin.com/in/matheusmilitao" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="width: 100%;">
-            Conectar no LinkedIn ↗
-          </a>
+    <div class="mobile-menu" id="mobile-menu">
+      <ul class="mobile-nav-links">
+        <li><a href="#hero" class="mobile-link">Início</a></li>
+        <li><a href="#sobre" class="mobile-link">Sobre</a></li>
+        <li><a href="#skills" class="mobile-link">Skills</a></li>
+        <li><a href="#experiencia" class="mobile-link">Experiência</a></li>
+        <li><a href="#projetos" class="mobile-link">Projetos</a></li>
+        <li><a href="#contato" class="mobile-link">Contato</a></li>
+        <li class="mobile-cta-item">
+          <a href="#contato" class="btn btn-primary" style="width: 100%;">Vamos conversar</a>
         </li>
       </ul>
     </div>
-  </div>
+  </header>
 
-  <main class="page-container">
-
-    <!-- =========================================================================
-         HERO SECTION: EDITORIAL & MAGNÉTICA
-         ========================================================================= -->
-    <section id="hero" class="hero-minimal">
-      <div class="content-wrapper">
-        
-        <div class="availability-tag">
-          <span class="pulse-dot"></span>
-          <span>Disponível para novas oportunidades & parcerias</span>
-        </div>
-
-        <h1 class="hero-title">
-          Engenharia de software com foco em <span class="gold-gradient">precisão técnica</span>, arquitetura segura e impacto real.
-        </h1>
-
-        <p class="hero-subtext">
-          Olá, sou <strong>Matheus Militão</strong> — desenvolvedor de software com foco em Backend (Java, Python, PHP), Mobile (Flutter) e Bancos de Dados. Graduando na <strong>FATEC Osasco</strong>, formado na <strong>ETEC</strong> e com 1 ano e 3 meses de experiência corporativa em planejamento operacional e automação na <strong>Atento</strong>.
-        </p>
-
-        <div class="hero-actions-row">
-          <a href="#projetos" class="btn btn-primary">
-            Explorar Projetos
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"></line><polyline points="19 12 12 19 5 12"></polyline></svg>
-          </a>
-
-          <button id="copy-email-btn" class="btn btn-outline" aria-label="Copiar e-mail">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
-            <span id="copy-btn-text">Copiar E-mail</span>
-          </button>
-
-          <a href="https://github.com/MilitaoMatheus" target="_blank" rel="noopener noreferrer" class="link-social" title="GitHub">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
-          </a>
-        </div>
-
-      </div>
-    </section>
+  <main>
 
     <!-- =========================================================================
-         SOBRE MIM & PILARES (LAYOUT EDITORIAL CLEAN)
+         2. HERO SECTION (Layout dividido em duas áreas + Elemento visual + Scroll)
          ========================================================================= -->
-    <section id="sobre" class="section-clean">
-      <div class="content-wrapper">
+    <section id="hero" class="hero-section">
+      <div class="container hero-grid">
         
-        <div class="section-intro">
-          <span class="index-num">01</span>
-          <h2 class="section-label">Fundamentos & Visão</h2>
-        </div>
-
-        <div class="editorial-split">
-          <div class="split-narrative">
-            <p class="narrative-lead">
-              Acredito que excelência em desenvolvimento vai muito além da sintaxe: trata-se de compreender profundamente os fluxos de negócio, antecipar gargalos e construir código com integridade estrutural.
-            </p>
-            <p class="narrative-body">
-              Minha experiência na <strong>Atento</strong> me proporcionou uma visão analítica sólida sobre o impacto direto da tecnologia nas operações diárias. Atuando com análise contínua de KPIs e desenvolvimento de soluções internas na <strong>Microsoft Power Platform</strong>, aprendi a construir ferramentas que geram economia de tempo e confiabilidade de dados.
-            </p>
+        <!-- Lado Esquerdo: Apresentação -->
+        <div class="hero-content">
+          <div class="hero-role-tag">
+            <span class="status-dot"></span>
+            <span>Desenvolvimento de Software • Tecnologia • Dados</span>
           </div>
 
-          <div class="split-pillars">
-            <div class="pillar-item">
-              <span class="pillar-bullet">/ 01</span>
-              <h4>Segurança por Definição</h4>
-              <p>Criptografia SSL/TLS, hashing PBKDF2, proteção contra injeções SQL e isolamento rigoroso entre camadas.</p>
-            </div>
+          <h1 class="hero-title">
+            <span class="hero-greeting">Olá, eu sou</span>
+            <strong class="hero-name">Matheus Militão.</strong>
+          </h1>
 
-            <div class="pillar-item">
-              <span class="pillar-bullet">/ 02</span>
-              <h4>Confiabilidade de Dados</h4>
-              <p>Modelagem relacional em MySQL/SQLite, integridade referencial e consultas otimizadas para escala.</p>
-            </div>
-
-            <div class="pillar-item">
-              <span class="pillar-bullet">/ 03</span>
-              <h4>Pragmatismo & Negócio</h4>
-              <p>Foco na entrega de valor mensurável, código desacoplado e automação focada na eficiência operacional.</p>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         PROJETOS SELECIONADOS (CARROSSEL INTERATIVO REFINADO)
-         ========================================================================= -->
-    <section id="projetos" class="section-clean">
-      <div class="content-wrapper">
-        
-        <div class="carousel-header-row">
-          <div class="section-intro no-margin">
-            <span class="index-num">02</span>
-            <h2 class="section-label">Projetos em Destaque</h2>
-          </div>
-
-          <!-- Controles Minimalistas: Contador + Setas -->
-          <div class="carousel-meta-nav">
-            <div class="carousel-counter">
-              <span id="counter-current">01</span>
-              <span class="dimmed">/</span>
-              <span id="counter-total">06</span>
-            </div>
-
-            <div class="carousel-btn-group">
-              <button id="carousel-prev" class="carousel-btn" aria-label="Projeto anterior">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"></polyline></svg>
-              </button>
-              <button id="carousel-next" class="carousel-btn" aria-label="Próximo projeto">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"></polyline></svg>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Filtros Discretos -->
-        <div class="filter-bar" role="tablist">
-          <button class="filter-tab active" data-filter="all">Todos</button>
-          <button class="filter-tab" data-filter="backend">Backend & APIs</button>
-          <button class="filter-tab" data-filter="web">Web & SQL</button>
-          <button class="filter-tab" data-filter="mobile">Mobile</button>
-        </div>
-
-        <!-- Trilho do Carrossel -->
-        <div class="carousel-viewport">
-          <div class="carousel-track" id="carousel-track">
-            
-            <!-- PROJETO 1: MailFlow -->
-            <article class="carousel-card" data-category="backend">
-              <div class="card-inner">
-                <div class="card-header-meta">
-                  <span class="card-tag">Python · Backend</span>
-                  <span class="card-badge-star">Destaque</span>
-                </div>
-
-                <h3 class="card-title">MailFlow</h3>
-                <p class="card-summary">
-                  Plataforma modular para gerenciamento e envio de e-mails com arquitetura em 4 camadas, isolamento multi-tenant, criptografia SMTP SSL e cookies seguros HMAC-SHA256.
-                </p>
-
-                <div class="card-tags-row">
-                  <span class="tag-pill">Python</span>
-                  <span class="tag-pill">SQLite</span>
-                  <span class="tag-pill">SMTP SSL</span>
-                  <span class="tag-pill">Tailwind</span>
-                </div>
-
-                <div class="card-action-row">
-                  <a href="https://github.com/MilitaoMatheus/MailFlow" target="_blank" rel="noopener noreferrer" class="link-project">
-                    <span>Ver no GitHub</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <!-- PROJETO 2: JoanaFinance -->
-            <article class="carousel-card" data-category="web">
-              <div class="card-inner">
-                <div class="card-header-meta">
-                  <span class="card-tag">PHP · Banco de Dados</span>
-                  <span class="card-badge-star">Destaque</span>
-                </div>
-
-                <h3 class="card-title">JoanaFinance</h3>
-                <p class="card-summary">
-                  Sistema de gestão financeira pessoal completo. Registro categorizado de receitas e despesas, fluxo de caixa e persistência relacional com integridade em MySQL.
-                </p>
-
-                <div class="card-tags-row">
-                  <span class="tag-pill">PHP</span>
-                  <span class="tag-pill">MySQL</span>
-                  <span class="tag-pill">MVC</span>
-                  <span class="tag-pill">Apache</span>
-                </div>
-
-                <div class="card-action-row">
-                  <a href="https://github.com/MilitaoMatheus/JoanaFinance" target="_blank" rel="noopener noreferrer" class="link-project">
-                    <span>Ver no GitHub</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <!-- PROJETO 3: Health Treats Mobile -->
-            <article class="carousel-card" data-category="mobile">
-              <div class="card-inner">
-                <div class="card-header-meta">
-                  <span class="card-tag">Flutter · Mobile</span>
-                  <span class="card-badge-star">Destaque TCC</span>
-                </div>
-
-                <h3 class="card-title">Health Treats</h3>
-                <p class="card-summary">
-                  Aplicativo catálogo mobile para e-commerce saudável. Exibe produtos, preços, tabelas nutricionais detalhadas e avaliações de clientes com navegação fluida nativa.
-                </p>
-
-                <div class="card-tags-row">
-                  <span class="tag-pill">Flutter</span>
-                  <span class="tag-pill">Dart</span>
-                  <span class="tag-pill">Mobile UI</span>
-                  <span class="tag-pill">E-commerce</span>
-                </div>
-
-                <div class="card-action-row">
-                  <a href="https://github.com/CatlopersTCC/AppHealthTreats" target="_blank" rel="noopener noreferrer" class="link-project">
-                    <span>Ver no GitHub</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <!-- PROJETO 4: TaskGame -->
-            <article class="carousel-card" data-category="mobile">
-              <div class="card-inner">
-                <div class="card-header-meta">
-                  <span class="card-tag">Flutter · Gamificação</span>
-                  <span class="card-badge-subtle">Mobile</span>
-                </div>
-
-                <h3 class="card-title">TaskGame</h3>
-                <p class="card-summary">
-                  App de rotina e hábitos diários gamificados. O progresso do usuário em tarefas diárias desbloqueia experiência e níveis de conquista, com gerenciamento reativo de estado.
-                </p>
-
-                <div class="card-tags-row">
-                  <span class="tag-pill">Flutter</span>
-                  <span class="tag-pill">Dart</span>
-                  <span class="tag-pill">State Management</span>
-                </div>
-
-                <div class="card-action-row">
-                  <a href="https://github.com/MilitaoMatheus/TaskGame" target="_blank" rel="noopener noreferrer" class="link-project">
-                    <span>Ver no GitHub</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <!-- PROJETO 5: Calculadora de Matrizes -->
-            <article class="carousel-card" data-category="backend">
-              <div class="card-inner">
-                <div class="card-header-meta">
-                  <span class="card-tag">Linguagem C · Algoritmos</span>
-                  <span class="card-badge-subtle">Computação</span>
-                </div>
-
-                <h3 class="card-title">Matrizes em C</h3>
-                <p class="card-summary">
-                  Motor computacional para operações matriciais avançadas, cálculo de determinantes e sistemas lineares com alocação dinâmica e manipulação precisa de memória.
-                </p>
-
-                <div class="card-tags-row">
-                  <span class="tag-pill">C</span>
-                  <span class="tag-pill">Álgebra Linear</span>
-                  <span class="tag-pill">Ponteiros</span>
-                </div>
-
-                <div class="card-action-row">
-                  <a href="https://github.com/MilitaoMatheus/Calculadora_Matrizes" target="_blank" rel="noopener noreferrer" class="link-project">
-                    <span>Ver no GitHub</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-            <!-- PROJETO 6: ToDoPyList -->
-            <article class="carousel-card" data-category="backend">
-              <div class="card-inner">
-                <div class="card-header-meta">
-                  <span class="card-tag">Python · CLI</span>
-                  <span class="card-badge-subtle">Utilitário</span>
-                </div>
-
-                <h3 class="card-title">ToDoPyList</h3>
-                <p class="card-summary">
-                  Gerenciador de tarefas e pendências via terminal, com persistência estruturada de dados e fluxo ágil projetado para desenvolvedores.
-                </p>
-
-                <div class="card-tags-row">
-                  <span class="tag-pill">Python</span>
-                  <span class="tag-pill">CLI</span>
-                  <span class="tag-pill">Arquivos</span>
-                </div>
-
-                <div class="card-action-row">
-                  <a href="https://github.com/MilitaoMatheus/ToDoPyList" target="_blank" rel="noopener noreferrer" class="link-project">
-                    <span>Ver no GitHub</span>
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                  </a>
-                </div>
-              </div>
-            </article>
-
-          </div>
-        </div>
-
-        <!-- Indicadores de Slide (Dots) -->
-        <div class="carousel-dots-container" id="carousel-dots" role="tablist"></div>
-
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         TRAJETÓRIA & FORMAÇÃO (EDITORIAL CHRONOLOGY)
-         ========================================================================= -->
-    <section id="trajetoria" class="section-clean">
-      <div class="content-wrapper">
-        
-        <div class="section-intro">
-          <span class="index-num">03</span>
-          <h2 class="section-label">Trajetória & Marcos</h2>
-        </div>
-
-        <div class="timeline-editorial">
-          
-          <div class="timeline-row">
-            <div class="timeline-period">2024 — Presente</div>
-            <div class="timeline-content">
-              <div class="timeline-heading-group">
-                <h3>Desenvolvimento de Software Multiplataforma</h3>
-                <span class="timeline-org">FATEC Osasco</span>
-              </div>
-              <p>Formação superior focada em engenharia de microsserviços, inteligência artificial, computação em nuvem e modelagem de arquiteturas escaláveis.</p>
-            </div>
-          </div>
-
-          <div class="timeline-row">
-            <div class="timeline-period">2025 — 2026</div>
-            <div class="timeline-content">
-              <div class="timeline-heading-group">
-                <h3>Planejamento Operacional & Automação</h3>
-                <span class="timeline-org">Atento Brasil · 1 ano e 3 meses</span>
-              </div>
-              <p>Análise de KPIs, relatórios estratégicos para tomada de decisão e desenvolvimento de soluções de automação interna utilizando a Microsoft Power Platform.</p>
-            </div>
-          </div>
-
-          <div class="timeline-row highlight">
-            <div class="timeline-period">2024</div>
-            <div class="timeline-content">
-              <div class="timeline-heading-group">
-                <h3>Finalista & Projeto Destaque</h3>
-                <span class="timeline-org">The Schools Challenge (EadKids)</span>
-              </div>
-              <p>Reconhecimento como Projeto Destaque na grande final do programa de inovação tecnológica com a idealização e prototipação da plataforma EadKids.</p>
-            </div>
-          </div>
-
-          <div class="timeline-row">
-            <div class="timeline-period">2022 — 2024</div>
-            <div class="timeline-content">
-              <div class="timeline-heading-group">
-                <h3>Técnico em Desenvolvimento de Sistemas</h3>
-                <span class="timeline-org">ETEC Prof. Basilides de Godoy</span>
-              </div>
-              <p>Ensino médio técnico integrado com bases sólidas em orientação a objetos, algoritmos, modelagem de banco de dados e engenharia de software.</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         STACK TÉCNICA (MATRIZ MINIMALISTA)
-         ========================================================================= -->
-    <section id="habilidades" class="section-clean">
-      <div class="content-wrapper">
-        
-        <div class="section-intro">
-          <span class="index-num">04</span>
-          <h2 class="section-label">Competências & Ferramentas</h2>
-        </div>
-
-        <div class="stack-cluster-grid">
-          <div class="stack-cluster">
-            <span class="cluster-title">Backend & Core</span>
-            <div class="cluster-items">
-              <span class="cluster-tag">Java (Spring Boot)</span>
-              <span class="cluster-tag">Python</span>
-              <span class="cluster-tag">PHP</span>
-              <span class="cluster-tag">Linguagem C</span>
-              <span class="cluster-tag">Node.js</span>
-            </div>
-          </div>
-
-          <div class="stack-cluster">
-            <span class="cluster-title">Dados & Servidor</span>
-            <div class="cluster-items">
-              <span class="cluster-tag">SQL & MySQL</span>
-              <span class="cluster-tag">SQLite</span>
-              <span class="cluster-tag">Linux (Ubuntu)</span>
-              <span class="cluster-tag">Git / GitHub</span>
-              <span class="cluster-tag">Apache</span>
-            </div>
-          </div>
-
-          <div class="stack-cluster">
-            <span class="cluster-title">Mobile & Frontend</span>
-            <div class="cluster-items">
-              <span class="cluster-tag">Flutter</span>
-              <span class="cluster-tag">Dart</span>
-              <span class="cluster-tag">HTML5 & CSS3</span>
-              <span class="cluster-tag">Tailwind CSS</span>
-              <span class="cluster-tag">JavaScript</span>
-            </div>
-          </div>
-
-          <div class="stack-cluster">
-            <span class="cluster-title">Negócios & Processos</span>
-            <div class="cluster-items">
-              <span class="cluster-tag">Microsoft Power Platform</span>
-              <span class="cluster-tag">Análise de Indicadores (KPIs)</span>
-              <span class="cluster-tag">Mapeamento de Processos</span>
-              <span class="cluster-tag">Metodologias Ágeis</span>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- =========================================================================
-         CONTATO & FECHAMENTO (CHAMADA LIMPA & ELEGANTE)
-         ========================================================================= -->
-    <section id="contato" class="section-clean section-contact">
-      <div class="content-wrapper">
-        
-        <div class="contact-card-minimal">
-          <span class="contact-callout">05 / Contato Direto</span>
-          <h2 class="contact-headline">Vamos construir algo sólido juntos?</h2>
-          <p class="contact-sub">
-            Seja para uma nova oportunidade profissional, parceria em desenvolvimento de software ou troca de ideias técnicas, estou à disposição.
+          <p class="hero-description">
+            Desenvolvedor apaixonado por tecnologia, desenvolvimento de software e criação de soluções digitais.
           </p>
 
-          <div class="contact-interactive-row">
-            <a href="mailto:matheussmilitao@gmail.com" class="email-display-link" title="Clique para enviar e-mail">
-              matheussmilitao@gmail.com
+          <div class="hero-ctas">
+            <a href="#projetos" class="btn btn-primary">
+              Ver meus projetos
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
-            <span id="copy-toast" class="copy-toast">E-mail copiado! ✓</span>
+            <a href="#contato" class="btn btn-secondary">
+              Entre em contato
+            </a>
+          </div>
+        </div>
+
+        <!-- Lado Direito: Elemento Visual Tecnológico (Interface / Código Estilizado) -->
+        <div class="hero-visual">
+          <div class="tech-window">
+            <div class="window-header">
+              <div class="window-controls">
+                <span class="ctrl-dot dot-close"></span>
+                <span class="ctrl-dot dot-min"></span>
+                <span class="ctrl-dot dot-max"></span>
+              </div>
+              <span class="window-title">engineer.config.ts</span>
+              <span class="window-tag">STATUS: ONLINE</span>
+            </div>
+
+            <div class="window-body">
+              <div class="code-row"><span class="c-dim">01</span> <span class="c-keyword">interface</span> <span class="c-type">SoftwareEngineer</span> {</div>
+              <div class="code-row"><span class="c-dim">02</span> &nbsp;&nbsp;name: <span class="c-string">"Matheus Militão"</span>;</div>
+              <div class="code-row"><span class="c-dim">03</span> &nbsp;&nbsp;focus: [<span class="c-string">"Backend"</span>, <span class="c-string">"Mobile"</span>, <span class="c-string">"Dados"</span>];</div>
+              <div class="code-row"><span class="c-dim">04</span> &nbsp;&nbsp;education: <span class="c-string">"FATEC Osasco & ETEC Basilides"</span>;</div>
+              <div class="code-row"><span class="c-dim">05</span> &nbsp;&nbsp;experience: <span class="c-string">"Atento (Planning & Automation)"</span>;</div>
+              <div class="code-row"><span class="c-dim">06</span> &nbsp;&nbsp;award: <span class="c-accent">"Finalista - The Schools Challenge"</span>;</div>
+              <div class="code-row"><span class="c-dim">07</span> &nbsp;&nbsp;coreStack: [<span class="c-string">"Java"</span>, <span class="c-string">"Python"</span>, <span class="c-string">"PHP"</span>, <span class="c-string">"Flutter"</span>, <span class="c-string">"SQL"</span>];</div>
+              <div class="code-row"><span class="c-dim">08</span> }</div>
+              <div class="code-row"><span class="c-dim">09</span></div>
+              <div class="code-row"><span class="c-dim">10</span> <span class="c-keyword">export default</span> <span class="c-keyword">new</span> <span class="c-type">Developer</span>({</div>
+              <div class="code-row"><span class="c-dim">11</span> &nbsp;&nbsp;mindset: <span class="c-string">"Segurança, Arquitetura Limpa e Valor Real"</span>,</div>
+              <div class="code-row"><span class="c-dim">12</span> &nbsp;&nbsp;readyForChallenges: <span class="c-bool">true</span></div>
+              <div class="code-row"><span class="c-dim">13</span> });</div>
+            </div>
+
+            <div class="window-footer">
+              <span class="term-cursor"></span>
+              <span class="window-tip">UTF-8 // Git: main [Clean Architecture]</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Indicador de Scroll -->
+      <div class="hero-scroll-indicator">
+        <a href="#sobre" class="scroll-link" aria-label="Rolar para a seção sobre">
+          <span class="scroll-arrow">↓</span>
+          <span class="scroll-text">Role para explorar</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         3. SOBRE MIM (Layout em Duas Colunas + Cards Informativos)
+         ========================================================================= -->
+    <section id="sobre" class="section">
+      <div class="container">
+        
+        <div class="sobre-grid">
+          
+          <!-- Coluna Esquerda: Texto Apresentando Trajetória -->
+          <div class="sobre-narrativa">
+            <span class="section-badge">Apresentação</span>
+            <h2 class="section-heading">Sobre mim</h2>
+
+            <p class="paragraph-lead">
+              Sou estudante de <strong>Desenvolvimento de Software Multiplataforma na FATEC Osasco</strong> e formado como <strong>Técnico em Desenvolvimento de Sistemas pela ETEC Prof. Basilides de Godoy</strong> (2024).
+            </p>
+
+            <p class="paragraph-body">
+              Minha paixão por tecnologia se traduz na construção de softwares seguros, modelagem de bancos de dados eficientes e desenvolvimento de aplicações completas (web e mobile).
+            </p>
+
+            <p class="paragraph-body">
+              Ao longo de mais de 1 ano de experiência corporativa na <strong>Atento</strong> na área de Planejamento, trabalhei diretamente com análise de indicadores (KPIs), elaboração de relatórios estratégicos e criação de soluções de automação com <strong>Microsoft Power Platform</strong>, unindo visão técnica e resolução prática de processos de negócio.
+            </p>
+
+            <p class="paragraph-body">
+              Mantenho uma postura de aprendizado contínuo, explorando novos paradigmas, arquiteturas limpas e boas práticas de engenharia de software para transformar desafios complexos em produtos digitais de alta confiabilidade.
+            </p>
           </div>
 
-          <div class="contact-links-row">
-            <a href="https://www.linkedin.com/in/matheusmilitao" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
-              Conectar no LinkedIn
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-            </a>
-            <a href="https://github.com/MilitaoMatheus" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
-              Repositórios no GitHub
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-            </a>
+          <!-- Coluna Direita: Cards Informativos de Síntese -->
+          <div class="sobre-cards">
+            
+            <div class="info-card">
+              <div class="info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c3 3 9 3 12 0v-5"></path></svg>
+              </div>
+              <div class="info-card-content">
+                <span class="info-card-label">Formação</span>
+                <h3 class="info-card-val">Desenvolvimento de Software Multiplataforma</h3>
+                <p class="info-card-desc">FATEC Osasco (Superior) & ETEC Basilides de Godoy (Técnico).</p>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg>
+              </div>
+              <div class="info-card-content">
+                <span class="info-card-label">Experiência</span>
+                <h3 class="info-card-val">Planejamento e análise</h3>
+                <p class="info-card-desc">Atento Brasil (1 ano e 3 meses): Acompanhamento de KPIs e automação Power Platform.</p>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 14 14"></polyline></svg>
+              </div>
+              <div class="info-card-content">
+                <span class="info-card-label">Foco</span>
+                <h3 class="info-card-val">Desenvolvimento de Software</h3>
+                <p class="info-card-desc">Backend robusto, aplicações mobile fluidas e arquitetura de dados confiável.</p>
+              </div>
+            </div>
+
+            <div class="info-card">
+              <div class="info-card-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              </div>
+              <div class="info-card-content">
+                <span class="info-card-label">Interesses</span>
+                <h3 class="info-card-val">Tecnologia, produtos e inovação</h3>
+                <p class="info-card-desc">Cibersegurança, microsserviços, inteligência artificial e experiência do usuário.</p>
+              </div>
+            </div>
+
           </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         4. SEÇÃO DE NÚMEROS / MÉTRICAS (Informações reais)
+         ========================================================================= -->
+    <section class="metrics-section">
+      <div class="container">
+        <div class="metrics-grid">
+          
+          <div class="metric-box">
+            <span class="metric-num">+6</span>
+            <span class="metric-title">Projetos</span>
+            <span class="metric-sub">Desenvolvidos e versionados no GitHub</span>
+          </div>
+
+          <div class="metric-box">
+            <span class="metric-num">+8</span>
+            <span class="metric-title">Tecnologias</span>
+            <span class="metric-sub">Linguagens, frameworks e bancos</span>
+          </div>
+
+          <div class="metric-box">
+            <span class="metric-num">+2</span>
+            <span class="metric-title">Anos estudando</span>
+            <span class="metric-sub">Formação técnica e superior contínua</span>
+          </div>
+
+          <div class="metric-box highlight">
+            <span class="metric-num">🏆 1</span>
+            <span class="metric-title">Prêmio de Destaque</span>
+            <span class="metric-sub">Finalista nacional no The Schools Challenge</span>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         5. SKILLS / TECNOLOGIAS (Cards com Ícone, Nome e Categoria - Sem barras)
+         ========================================================================= -->
+    <section id="skills" class="section">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-badge">Competências</span>
+          <h2 class="section-heading">Tecnologias & Skills</h2>
+          <p class="section-subtitle">Ferramentas e linguagens que utilizo na prática para construir software confiável.</p>
+        </div>
+
+        <div class="skills-categories-wrapper">
+          
+          <!-- Categoria: Back-end -->
+          <div class="skill-category-block">
+            <h3 class="category-heading">
+              <span class="cat-dot"></span>
+              Back-end
+            </h3>
+            <div class="skills-cards-grid">
+              
+              <div class="skill-card">
+                <span class="skill-icon">🐍</span>
+                <strong class="skill-name">Python</strong>
+                <span class="skill-category">Backend</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">☕</span>
+                <strong class="skill-name">Java</strong>
+                <span class="skill-category">Backend</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">🐘</span>
+                <strong class="skill-name">PHP</strong>
+                <span class="skill-category">Backend</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">🍃</span>
+                <strong class="skill-name">Spring Boot</strong>
+                <span class="skill-category">Backend</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">⚙️</span>
+                <strong class="skill-name">Linguagem C</strong>
+                <span class="skill-category">Backend / Algoritmos</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Categoria: Mobile -->
+          <div class="skill-category-block">
+            <h3 class="category-heading">
+              <span class="cat-dot"></span>
+              Mobile
+            </h3>
+            <div class="skills-cards-grid">
+              
+              <div class="skill-card">
+                <span class="skill-icon">💙</span>
+                <strong class="skill-name">Flutter</strong>
+                <span class="skill-category">Mobile</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">🎯</span>
+                <strong class="skill-name">Dart</strong>
+                <span class="skill-category">Mobile</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Categoria: Banco de Dados -->
+          <div class="skill-category-block">
+            <h3 class="category-heading">
+              <span class="cat-dot"></span>
+              Banco de Dados
+            </h3>
+            <div class="skills-cards-grid">
+              
+              <div class="skill-card">
+                <span class="skill-icon">🐬</span>
+                <strong class="skill-name">MySQL</strong>
+                <span class="skill-category">Banco de Dados</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">🗃️</span>
+                <strong class="skill-name">SQL</strong>
+                <span class="skill-category">Banco de Dados</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">📦</span>
+                <strong class="skill-name">SQLite</strong>
+                <span class="skill-category">Banco de Dados</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Categoria: Front-end -->
+          <div class="skill-category-block">
+            <h3 class="category-heading">
+              <span class="cat-dot"></span>
+              Front-end
+            </h3>
+            <div class="skills-cards-grid">
+              
+              <div class="skill-card">
+                <span class="skill-icon">🌐</span>
+                <strong class="skill-name">HTML</strong>
+                <span class="skill-category">Front-end</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">🎨</span>
+                <strong class="skill-name">CSS</strong>
+                <span class="skill-category">Front-end</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">⚡</span>
+                <strong class="skill-name">JavaScript</strong>
+                <span class="skill-category">Front-end</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">🌊</span>
+                <strong class="skill-name">Tailwind CSS</strong>
+                <span class="skill-category">Front-end</span>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Categoria: Ferramentas -->
+          <div class="skill-category-block">
+            <h3 class="category-heading">
+              <span class="cat-dot"></span>
+              Ferramentas & Ambiente
+            </h3>
+            <div class="skills-cards-grid">
+              
+              <div class="skill-card">
+                <span class="skill-icon">🐙</span>
+                <strong class="skill-name">Git & GitHub</strong>
+                <span class="skill-category">Versionamento</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">💻</span>
+                <strong class="skill-name">VS Code</strong>
+                <span class="skill-category">IDE</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">🤖</span>
+                <strong class="skill-name">Android Studio</strong>
+                <span class="skill-category">IDE Mobile</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">🔧</span>
+                <strong class="skill-name">MySQL Workbench</strong>
+                <span class="skill-category">Modelagem</span>
+              </div>
+
+              <div class="skill-card">
+                <span class="skill-icon">⚡</span>
+                <strong class="skill-name">Power Platform</strong>
+                <span class="skill-category">Automação Corporativa</span>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         6. EXPERIÊNCIA (Timeline Profissional Limpa)
+         ========================================================================= -->
+    <section id="experiencia" class="section">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-badge">Carreira & Educação</span>
+          <h2 class="section-heading">Minha experiência</h2>
+          <p class="section-subtitle">Minha evolução entre o ambiente corporativo, marcos educacionais e premiações.</p>
+        </div>
+
+        <div class="timeline-tree">
+          
+          <!-- Experiência 1: Atento -->
+          <div class="timeline-node">
+            <div class="node-marker">
+              <span class="node-dot"></span>
+              <span class="node-line"></span>
+            </div>
+            <div class="node-body">
+              <div class="node-header">
+                <span class="node-year">2025 — 2026</span>
+                <h3 class="node-role">Planejamento Operacional & Automação</h3>
+                <span class="node-company">Atento Brasil • 1 ano e 3 meses</span>
+              </div>
+              <p class="node-desc">
+                Atuação na área de Planejamento com acompanhamento rigoroso de indicadores operacionais (KPIs) e elaboração de relatórios analíticos para tomada de decisão. Desenvolvimento de soluções de automação de processos internos com Microsoft Power Platform.
+              </p>
+              <div class="node-tags">
+                <span class="node-tag">Microsoft Power Platform</span>
+                <span class="node-tag">Análise de KPIs</span>
+                <span class="node-tag">Automação de Processos</span>
+                <span class="node-tag">Relatórios Estratégicos</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experiência 2: The Schools Challenge -->
+          <div class="timeline-node highlight-node">
+            <div class="node-marker">
+              <span class="node-dot dot-award"></span>
+              <span class="node-line"></span>
+            </div>
+            <div class="node-body">
+              <div class="node-header">
+                <span class="node-year">2024</span>
+                <h3 class="node-role">🏆 Finalista & Projeto Destaque — EadKids</h3>
+                <span class="node-company">The Schools Challenge • Desafio de Inovação</span>
+              </div>
+              <p class="node-desc">
+                Reconhecimento como Projeto Destaque na grande final do programa nacional de inovação com a idealização e desenvolvimento da plataforma EadKids, validando competências de produto, prototipação ágil e apresentação.
+              </p>
+              <div class="node-tags">
+                <span class="node-tag">Inovação</span>
+                <span class="node-tag">Prototipação</span>
+                <span class="node-tag">Metodologias Ágeis</span>
+                <span class="node-tag">EdTech</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experiência 3: FATEC Osasco -->
+          <div class="timeline-node">
+            <div class="node-marker">
+              <span class="node-dot"></span>
+              <span class="node-line"></span>
+            </div>
+            <div class="node-body">
+              <div class="node-header">
+                <span class="node-year">2024 — Presente</span>
+                <h3 class="node-role">Graduação em Desenvolvimento de Software Multiplataforma</h3>
+                <span class="node-company">FATEC Osasco • Ensino Superior</span>
+              </div>
+              <p class="node-desc">
+                Formação superior focada em desenvolvimento de software moderno, arquitetura de sistemas, microsserviços, inteligência artificial, computação em nuvem e liderança técnica.
+              </p>
+              <div class="node-tags">
+                <span class="node-tag">Java</span>
+                <span class="node-tag">Spring Boot</span>
+                <span class="node-tag">Engenharia de Software</span>
+                <span class="node-tag">Cloud</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Experiência 4: ETEC Basilides -->
+          <div class="timeline-node">
+            <div class="node-marker">
+              <span class="node-dot"></span>
+            </div>
+            <div class="node-body">
+              <div class="node-header">
+                <span class="node-year">2022 — 2024</span>
+                <h3 class="node-role">Técnico em Desenvolvimento de Sistemas</h3>
+                <span class="node-company">ETEC Prof. Basilides de Godoy • Formado em 2024</span>
+              </div>
+              <p class="node-desc">
+                Ensino médio técnico integrado com bases sólidas em lógica de programação, estruturas de dados, orientação a objetos, modelagem relacional de banco de dados e desenvolvimento mobile.
+              </p>
+              <div class="node-tags">
+                <span class="node-tag">Lógica & Algoritmos</span>
+                <span class="node-tag">Linguagem C</span>
+                <span class="node-tag">PHP & MySQL</span>
+                <span class="node-tag">Mobile</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         7. PROJETOS (Projeto em Destaque Principal + Filtros + Grid de Cards)
+         ========================================================================= -->
+    <section id="projetos" class="section">
+      <div class="container">
+        
+        <div class="section-header">
+          <span class="section-badge">Portfólio</span>
+          <h2 class="section-heading">Projetos em destaque</h2>
+          <p class="section-subtitle">Aplicações que desenvolvi demonstrando arquitetura limpa, segurança e valor de produto.</p>
+        </div>
+
+        <!-- ==================== PROJETO EM DESTAQUE PRINCIPAL ==================== -->
+        <div class="featured-project-container">
+          <div class="featured-project-card">
+            
+            <!-- Lado Esquerdo: Preview Tecnológico -->
+            <div class="featured-preview">
+              <div class="mockup-code-window">
+                <div class="mockup-header">
+                  <span class="m-dot m-red"></span>
+                  <span class="m-dot m-yellow"></span>
+                  <span class="m-dot m-green"></span>
+                  <span class="mockup-file">security_engine.py</span>
+                </div>
+                <div class="mockup-code">
+                  <div class="code-line"><span class="k-word">import</span> smtplib, ssl, hashlib</div>
+                  <div class="code-line"><span class="k-word">class</span> <span class="k-class">MailFlowSecurity</span>:</div>
+                  <div class="code-line">&nbsp;&nbsp;<span class="k-word">def</span> <span class="k-func">dispatch</span>(self, tenant_id, payload):</div>
+                  <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;verify_hmac_signature(payload.token)</div>
+                  <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;ctx = ssl.create_default_context()</div>
+                  <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="k-word">with</span> smtplib.SMTP_SSL(HOST, 465, context=ctx):</div>
+                  <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;smtp.send_message(payload.envelope)</div>
+                  <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="k-word">return</span> LogService.audit_success(tenant_id)</div>
+                </div>
+                <div class="mockup-status">
+                  <span class="mockup-badge">✓ SMTP SSL Enforced</span>
+                  <span class="mockup-badge">✓ Multi-Tenant Shield</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Lado Direito: Informações e Solução -->
+            <div class="featured-details">
+              <div class="featured-tag-row">
+                <span class="featured-label">Projeto Estrela</span>
+                <span class="featured-cat">Python • Criptografia</span>
+              </div>
+
+              <h3 class="featured-title">MailFlow</h3>
+
+              <p class="featured-desc">
+                Plataforma modular e escalável de gerenciamento e disparo de campanhas de e-mails, com relatórios analíticos de entrega e controle multiusuário isolado.
+              </p>
+
+              <div class="featured-problem-box">
+                <strong class="problem-label">Problema solucionado:</strong>
+                <p>Elimina riscos de falhas de entrega e exposição de credenciais através de arquitetura em 4 camadas, autenticação HMAC-SHA256, hashing seguro PBKDF2 e conexão criptografada SMTP SSL com isolamento estrito entre usuários.</p>
+              </div>
+
+              <div class="featured-tags-list">
+                <span class="p-tag">Python</span>
+                <span class="p-tag">SQLite / MySQL</span>
+                <span class="p-tag">SMTP SSL</span>
+                <span class="p-tag">PBKDF2</span>
+                <span class="p-tag">Tailwind CSS</span>
+              </div>
+
+              <div class="featured-actions">
+                <a href="https://github.com/MilitaoMatheus/MailFlow" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                  Ver no GitHub
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ==================== FILTROS DE PROJETOS ==================== -->
+        <div class="projects-filters-bar" role="tablist">
+          <button class="filter-btn active" data-filter="all">Todos</button>
+          <button class="filter-btn" data-filter="backend">Back-end</button>
+          <button class="filter-btn" data-filter="web">Web & SQL</button>
+          <button class="filter-btn" data-filter="mobile">Mobile</button>
+        </div>
+
+        <!-- ==================== GRID DE CARDS DE PROJETOS ==================== -->
+        <div class="projects-grid" id="projects-grid">
+          
+          <!-- Card 1: JoanaFinance -->
+          <article class="project-card" data-category="web">
+            <div class="card-preview">
+              <div class="preview-mockup">
+                <div class="mockup-brand">
+                  <span class="mockup-icon">💵</span>
+                  <span>JoanaFinance • PHP & MySQL</span>
+                </div>
+                <div class="mockup-snip">
+                  <code>$cashFlow = $db-&gt;query("SELECT SUM(valor)...");</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <div class="card-meta">
+                <span class="card-category">Web & Banco de Dados</span>
+              </div>
+
+              <h3 class="card-name">JoanaFinance</h3>
+
+              <p class="card-description">
+                Sistema completo de gestão financeira pessoal com conciliação, controle de receitas, despesas categorizadas e fluxo de caixa relacional.
+              </p>
+
+              <div class="card-tech-tags">
+                <span class="tech-tag">PHP</span>
+                <span class="tech-tag">MySQL</span>
+                <span class="tech-tag">MVC</span>
+                <span class="tech-tag">Apache</span>
+              </div>
+
+              <div class="card-footer-links">
+                <a href="https://github.com/MilitaoMatheus/JoanaFinance" target="_blank" rel="noopener noreferrer" class="link-card-action">
+                  <span>GitHub</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 2: Health Treats Mobile -->
+          <article class="project-card" data-category="mobile">
+            <div class="card-preview">
+              <div class="preview-mockup">
+                <div class="mockup-brand">
+                  <span class="mockup-icon">🥗</span>
+                  <span>Health Treats • Flutter</span>
+                </div>
+                <div class="mockup-snip">
+                  <code>Widget build() =&gt; CatalogScreen(nutritionFacts);</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <div class="card-meta">
+                <span class="card-category">Mobile & TCC</span>
+              </div>
+
+              <h3 class="card-name">Health Treats Mobile</h3>
+
+              <p class="card-description">
+                Aplicativo catálogo mobile para e-commerce saudável com tabelas nutricionais, preços e avaliações de clientes, desenvolvido para TCC.
+              </p>
+
+              <div class="card-tech-tags">
+                <span class="tech-tag">Flutter</span>
+                <span class="tech-tag">Dart</span>
+                <span class="tech-tag">Mobile UX</span>
+                <span class="tech-tag">E-commerce</span>
+              </div>
+
+              <div class="card-footer-links">
+                <a href="https://github.com/CatlopersTCC/AppHealthTreats" target="_blank" rel="noopener noreferrer" class="link-card-action">
+                  <span>GitHub</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 3: TaskGame -->
+          <article class="project-card" data-category="mobile">
+            <div class="card-preview">
+              <div class="preview-mockup">
+                <div class="mockup-brand">
+                  <span class="mockup-icon">🎮</span>
+                  <span>TaskGame • Mobile</span>
+                </div>
+                <div class="mockup-snip">
+                  <code>player.addExperience(task.xp); notifyListeners();</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <div class="card-meta">
+                <span class="card-category">Mobile & Gamificação</span>
+              </div>
+
+              <h3 class="card-name">TaskGame</h3>
+
+              <p class="card-description">
+                Aplicativo que transforma organização de rotinas diárias em uma jornada de gamificação, recompensando o cumprimento de metas com níveis.
+              </p>
+
+              <div class="card-tech-tags">
+                <span class="tech-tag">Flutter</span>
+                <span class="tech-tag">Dart</span>
+                <span class="tech-tag">State Management</span>
+                <span class="tech-tag">Gamificação</span>
+              </div>
+
+              <div class="card-footer-links">
+                <a href="https://github.com/MilitaoMatheus/TaskGame" target="_blank" rel="noopener noreferrer" class="link-card-action">
+                  <span>GitHub</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 4: Calculadora de Matrizes -->
+          <article class="project-card" data-category="backend">
+            <div class="card-preview">
+              <div class="preview-mockup">
+                <div class="mockup-brand">
+                  <span class="mockup-icon">🧮</span>
+                  <span>Álgebra Linear • Linguagem C</span>
+                </div>
+                <div class="mockup-snip">
+                  <code>int** res = multiply_matrices(matA, matB);</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <div class="card-meta">
+                <span class="card-category">Computação & Algoritmos</span>
+              </div>
+
+              <h3 class="card-name">Calculadora de Matrizes</h3>
+
+              <p class="card-description">
+                Sistema computacional em C para resolução de operações matriciais avançadas, determinantes e sistemas lineares com alocação dinâmica.
+              </p>
+
+              <div class="card-tech-tags">
+                <span class="tech-tag">Linguagem C</span>
+                <span class="tech-tag">Ponteiros</span>
+                <span class="tech-tag">Álgebra Linear</span>
+                <span class="tech-tag">Algoritmos</span>
+              </div>
+
+              <div class="card-footer-links">
+                <a href="https://github.com/MilitaoMatheus/Calculadora_Matrizes" target="_blank" rel="noopener noreferrer" class="link-card-action">
+                  <span>GitHub</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Card 5: ToDoPyList -->
+          <article class="project-card" data-category="backend">
+            <div class="card-preview">
+              <div class="preview-mockup">
+                <div class="mockup-brand">
+                  <span class="mockup-icon">📝</span>
+                  <span>ToDoPyList • Python CLI</span>
+                </div>
+                <div class="mockup-snip">
+                  <code>json.dump(tasks, open("tasks.json", "w"))</code>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-content">
+              <div class="card-meta">
+                <span class="card-category">Python & Utilitário</span>
+              </div>
+
+              <h3 class="card-name">ToDoPyList</h3>
+
+              <p class="card-description">
+                Gerenciador de tarefas via terminal focado em produtividade para desenvolvedores, estruturado com persistência em arquivos JSON.
+              </p>
+
+              <div class="card-tech-tags">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">CLI</span>
+                <span class="tech-tag">Arquivos JSON</span>
+                <span class="tech-tag">Clean Code</span>
+              </div>
+
+              <div class="card-footer-links">
+                <a href="https://github.com/MilitaoMatheus/ToDoPyList" target="_blank" rel="noopener noreferrer" class="link-card-action">
+                  <span>GitHub</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         8. CONTATO (Chamada + Botões Diretos + Formulário Simples)
+         ========================================================================= -->
+    <section id="contato" class="section contact-section">
+      <div class="container">
+        
+        <div class="contact-header">
+          <span class="section-badge">Conexão</span>
+          <h2 class="section-heading">Vamos criar algo juntos?</h2>
+          <p class="section-subtitle">
+            Estou sempre aberto a novas oportunidades, projetos e conexões.
+          </p>
+        </div>
+
+        <div class="contact-layout">
+          
+          <!-- Lado Esquerdo: Botões Diretos -->
+          <div class="contact-channels">
+            <h3 class="channels-title">Canais Diretos</h3>
+
+            <!-- E-mail com Cópia Rápida -->
+            <div class="channel-card">
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+              </div>
+              <div class="channel-info">
+                <span class="channel-label">E-mail Profissional</span>
+                <a href="mailto:matheussmilitao@gmail.com" class="channel-link">matheussmilitao@gmail.com</a>
+              </div>
+              <button id="copy-email-btn" class="btn-channel-action" aria-label="Copiar e-mail" title="Copiar e-mail">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>
+              </button>
+            </div>
+            <div id="copy-toast" class="copy-toast">E-mail copiado para a área de transferência! ✓</div>
+
+            <!-- LinkedIn -->
+            <div class="channel-card">
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+              </div>
+              <div class="channel-info">
+                <span class="channel-label">LinkedIn</span>
+                <a href="https://www.linkedin.com/in/matheusmilitao" target="_blank" rel="noopener noreferrer" class="channel-link">linkedin.com/in/matheusmilitao</a>
+              </div>
+              <a href="https://www.linkedin.com/in/matheusmilitao" target="_blank" rel="noopener noreferrer" class="btn-channel-action" aria-label="Acessar LinkedIn">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+
+            <!-- GitHub -->
+            <div class="channel-card">
+              <div class="channel-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path></svg>
+              </div>
+              <div class="channel-info">
+                <span class="channel-label">GitHub</span>
+                <a href="https://github.com/MilitaoMatheus" target="_blank" rel="noopener noreferrer" class="channel-link">github.com/MilitaoMatheus</a>
+              </div>
+              <a href="https://github.com/MilitaoMatheus" target="_blank" rel="noopener noreferrer" class="btn-channel-action" aria-label="Acessar GitHub">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Lado Direito: Formulário Simples -->
+          <div class="contact-form-box">
+            <h3 class="form-title">Envie uma mensagem</h3>
+            <form id="contact-form" class="simple-form">
+              <div class="form-group">
+                <label for="form-name">Nome</label>
+                <input type="text" id="form-name" required placeholder="Seu nome">
+              </div>
+
+              <div class="form-group">
+                <label for="form-email">E-mail</label>
+                <input type="email" id="form-email" required placeholder="seuemail@exemplo.com">
+              </div>
+
+              <div class="form-group">
+                <label for="form-message">Mensagem</label>
+                <textarea id="form-message" rows="4" required placeholder="Escreva sua mensagem aqui..."></textarea>
+              </div>
+
+              <button type="submit" class="btn btn-primary" style="width: 100%;">
+                Enviar
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              </button>
+            </form>
+          </div>
+
         </div>
 
       </div>
@@ -566,18 +1000,22 @@
   </main>
 
   <!-- =========================================================================
-       RODAPÉ MINIMALISTA
+       9. FOOTER (Minimalista, frases e copyright)
        ========================================================================= -->
-  <footer class="footer-simple">
-    <div class="content-wrapper footer-flex">
-      <div class="footer-left">
-        <span class="footer-brand-tag">Matheus Militão</span>
-        <span class="footer-dot">•</span>
-        <span class="footer-note">Hospedado via GitHub Pages</span>
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-brand-side">
+        <strong class="footer-author">Desenvolvido por Matheus Militão.</strong>
+        <p class="footer-phrase">Construindo soluções de software com foco em engenharia, qualidade e produto.</p>
       </div>
 
-      <div class="footer-right">
-        <span>© 2026 Matheus Militão da Silva</span>
+      <div class="footer-social-side">
+        <div class="footer-links">
+          <a href="https://www.linkedin.com/in/matheusmilitao" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          <a href="https://github.com/MilitaoMatheus" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="mailto:matheussmilitao@gmail.com">E-mail</a>
+        </div>
+        <span class="footer-copyright">© 2026 Matheus Militão. Todos os direitos reservados.</span>
       </div>
     </div>
   </footer>

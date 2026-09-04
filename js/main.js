@@ -192,12 +192,12 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* =========================================================================
-     6. FORMULÁRIO DE CONTATO (SIMPLES - SEÇÃO 19 DO BRIEFING)
+     6. FORMULÁRIO DE CONTATO (ENVIO DIRETO VIA AJAX SEM REDIRECIONAMENTO)
      ========================================================================= */
   const contactForm = document.getElementById('contact-form');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = document.getElementById('form-name').value.trim();
       const email = document.getElementById('form-email').value.trim();
@@ -208,22 +208,57 @@ document.addEventListener('DOMContentLoaded', () => {
         return;
       }
 
-      const subject = `Contato Portfólio - ${name}`;
-      const body = `Olá Matheus,\n\nMeu nome é ${name} (${email}).\n\nMensagem:\n${message}\n\nEnviado através do seu site de portfólio.`;
-
-      const mailtoUrl = `mailto:${emailTarget}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailtoUrl;
-
       const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnHTML = submitBtn ? submitBtn.innerHTML : 'Enviar';
+
       if (submitBtn) {
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '✓ Abrindo e-mail...';
         submitBtn.disabled = true;
-        setTimeout(() => {
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
+        submitBtn.innerHTML = 'Enviando...';
+      }
+
+      const payload = {
+        _subject: `Novo Contato via Portfólio — ${name}`,
+        _template: 'box',
+        _captcha: 'false',
+        _replyto: email,
+        'Nome': name,
+        'E-mail': email,
+        'Ideia / Necessidade': message,
+        'Origem': 'portfolio-matheus-militao'
+      };
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/matheussmilitao@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+
+        if (response.ok && (data.success === true || data.success === 'true')) {
+          if (submitBtn) {
+            submitBtn.innerHTML = '✓ Mensagem enviada com sucesso!';
+          }
           contactForm.reset();
-        }, 3500);
+        } else {
+          throw new Error(data.message || 'Erro ao enviar mensagem.');
+        }
+      } catch (err) {
+        console.error('Erro no envio direto:', err);
+        if (submitBtn) {
+          submitBtn.innerHTML = '✕ Erro no envio. Tente novamente.';
+        }
+      } finally {
+        setTimeout(() => {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalBtnHTML;
+          }
+        }, 4000);
       }
     });
   }

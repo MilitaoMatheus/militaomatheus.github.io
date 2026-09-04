@@ -192,38 +192,134 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* =========================================================================
-     6. FORMULÁRIO DE CONTATO (SIMPLES - SEÇÃO 19 DO BRIEFING)
+     6. FORMULÁRIO DE CONTATO (ENVIO DIRETO VIA API FORM SUBMIT COM TEMPLATE)
      ========================================================================= */
   const contactForm = document.getElementById('contact-form');
+  const contactStatus = document.getElementById('contact-status');
 
   if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
+    const showStatus = (htmlContent, type) => {
+      if (!contactStatus) return;
+      contactStatus.className = `form-status ${type}`;
+      contactStatus.innerHTML = htmlContent;
+      contactStatus.style.display = 'flex';
+      contactStatus.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    };
+
+    contactForm.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const name = document.getElementById('form-name').value.trim();
-      const email = document.getElementById('form-email').value.trim();
-      const message = document.getElementById('form-message').value.trim();
+
+      const nameInput = document.getElementById('form-name');
+      const emailInput = document.getElementById('form-email');
+      const messageInput = document.getElementById('form-message');
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+
+      const name = nameInput ? nameInput.value.trim() : '';
+      const email = emailInput ? emailInput.value.trim() : '';
+      const message = messageInput ? messageInput.value.trim() : '';
 
       if (!name || !email || !message) {
-        alert('Por favor, preencha todos os campos.');
+        showStatus(`
+          <div class="status-content">
+            <strong>Campos incompletos</strong>
+            <p>Por favor, preencha nome, e-mail e mensagem antes de enviar.</p>
+          </div>
+        `, 'error');
         return;
       }
 
-      const subject = `Contato Portfólio - ${name}`;
-      const body = `Olá Matheus,\n\nMeu nome é ${name} (${email}).\n\nMensagem:\n${message}\n\nEnviado através do seu site de portfólio.`;
+      // Validação de formato de e-mail
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        showStatus(`
+          <div class="status-content">
+            <strong>E-mail inválido</strong>
+            <p>Por favor, forneça um endereço de e-mail válido para que eu possa responder.</p>
+          </div>
+        `, 'error');
+        return;
+      }
 
-      const mailtoUrl = `mailto:${emailTarget}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      window.location.href = mailtoUrl;
-
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      // Estado de envio visual no botão
+      const originalBtnHTML = submitBtn ? submitBtn.innerHTML : 'Enviar Mensagem';
       if (submitBtn) {
-        const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '✓ Abrindo e-mail...';
         submitBtn.disabled = true;
-        setTimeout(() => {
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
+        submitBtn.classList.add('btn-loading');
+        submitBtn.innerHTML = `
+          <svg class="spinner" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <circle cx="12" cy="12" r="10" stroke-opacity="0.25"></circle>
+            <path d="M12 2a10 10 0 0 1 10 10" stroke-linecap="round"></path>
+          </svg>
+          <span>Enviando mensagem...</span>
+        `;
+      }
+
+      if (contactStatus) {
+        contactStatus.style.display = 'none';
+      }
+
+      // Payload estruturado com template 'table' e metadados para entrega no Gmail
+      const now = new Date();
+      const formattedDate = now.toLocaleDateString('pt-BR') + ' às ' + now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
+      const payload = {
+        _subject: `[Portfólio] Nova mensagem de ${name}`,
+        _template: 'table',
+        _captcha: 'false',
+        _replyto: email,
+        'Nome do Remetente': name,
+        'E-mail para Resposta': email,
+        'Mensagem': message,
+        'Data e Hora do Envio': formattedDate,
+        'Origem': 'Formulário de Contato - Portfólio Web Matheus Militão'
+      };
+
+      try {
+        const response = await fetch('https://formsubmit.co/ajax/matheussmilitao@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+
+        if (response.ok && (data.success === true || data.success === 'true')) {
+          showStatus(`
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22" style="flex-shrink: 0; margin-top: 2px;">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            <div class="status-content">
+              <strong>Mensagem enviada com sucesso!</strong>
+              <p>Obrigado pelo contato, ${name}! Sua mensagem foi encaminhada diretamente para meu e-mail pessoal e responderei o mais breve possível.</p>
+            </div>
+          `, 'success');
           contactForm.reset();
-        }, 3500);
+        } else {
+          throw new Error(data.message || 'Erro ao processar envio do formulário.');
+        }
+      } catch (err) {
+        console.error('Erro no envio direto:', err);
+        showStatus(`
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="22" height="22" style="flex-shrink: 0; margin-top: 2px;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <div class="status-content">
+            <strong>Não foi possível enviar automaticamente agora.</strong>
+            <p>Você pode me enviar diretamente através do e-mail: <a href="mailto:${emailTarget}?subject=Contato%20Portf%C3%B3lio%20-%20${encodeURIComponent(name)}&body=${encodeURIComponent(message)}" class="status-fallback-link">${emailTarget}</a></p>
+          </div>
+        `, 'error');
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.classList.remove('btn-loading');
+          submitBtn.innerHTML = originalBtnHTML;
+        }
       }
     });
   }

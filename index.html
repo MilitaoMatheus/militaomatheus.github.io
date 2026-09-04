@@ -1061,24 +1061,27 @@
           <div class="contact-form-box">
             <h3 class="form-title">Envie uma mensagem</h3>
             <form id="contact-form" class="simple-form">
+              <!-- Mensagem de Feedback / Status -->
+              <div id="contact-status" class="form-status" role="alert" style="display: none;"></div>
+
               <div class="form-group">
                 <label for="form-name">Nome</label>
-                <input type="text" id="form-name" required placeholder="Seu nome">
+                <input type="text" id="form-name" name="nome" required placeholder="Seu nome">
               </div>
 
               <div class="form-group">
                 <label for="form-email">E-mail</label>
-                <input type="email" id="form-email" required placeholder="seuemail@exemplo.com">
+                <input type="email" id="form-email" name="email" required placeholder="seuemail@exemplo.com">
               </div>
 
               <div class="form-group">
                 <label for="form-message">Mensagem</label>
-                <textarea id="form-message" rows="4" required placeholder="Escreva sua mensagem aqui..."></textarea>
+                <textarea id="form-message" name="mensagem" rows="4" required placeholder="Escreva sua mensagem aqui..."></textarea>
               </div>
 
-              <button type="submit" class="btn btn-primary" style="width: 100%;">
-                Enviar
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+              <button type="submit" class="btn btn-primary btn-submit-form" style="width: 100%;">
+                <span class="btn-text">Enviar Mensagem</span>
+                <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
               </button>
             </form>
           </div>

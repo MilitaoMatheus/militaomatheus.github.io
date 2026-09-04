@@ -1125,20 +1125,20 @@ body.modal-open {
 }
 
 .tech-items-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 0.65rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 0.75rem;
 }
 
 .tech-item {
   display: flex;
   align-items: center;
-  gap: 0.85rem;
-  padding: 0.55rem 0.75rem;
+  gap: 0.7rem;
+  padding: 0.65rem 0.85rem;
   background: rgba(255, 255, 255, 0.03);
   border: 1px solid rgba(255, 255, 255, 0.05);
   border-radius: var(--radius-sm);
-  transition: background-color var(--transition-fast), border-color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 [data-theme="light"] .tech-item {
@@ -1149,11 +1149,12 @@ body.modal-open {
 .tech-item:hover {
   background: var(--color-accent-subtle);
   border-color: var(--color-accent-border);
+  transform: translateY(-2px);
 }
 
 .tech-logo-wrap {
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1161,28 +1162,16 @@ body.modal-open {
 }
 
 .tech-logo {
-  width: 24px;
-  height: 24px;
+  width: 22px;
+  height: 22px;
   display: block;
 }
 
-.tech-item-info {
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
-}
-
 .tech-name {
-  font-size: 0.9rem;
+  font-size: 0.88rem;
   font-weight: 700;
   color: var(--text-title);
   line-height: 1.2;
-}
-
-.tech-role {
-  font-size: 0.74rem;
-  color: var(--text-muted);
-  line-height: 1.25;
 }
 
 /* --------------------------------------------------------------------------
@@ -2007,27 +1996,28 @@ body.modal-open {
     font-size: 1.1rem;
   }
 
+  .tech-items-grid {
+    grid-template-columns: repeat(auto-fill, minmax(125px, 1fr));
+    gap: 0.55rem;
+  }
+
   .tech-item {
     padding: 0.5rem 0.65rem;
-    gap: 0.65rem;
+    gap: 0.55rem;
   }
 
   .tech-logo-wrap {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
   }
 
   .tech-logo {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
   }
 
   .tech-name {
-    font-size: 0.84rem;
-  }
-
-  .tech-role {
-    font-size: 0.7rem;
+    font-size: 0.82rem;
   }
 
   .projects-grid {

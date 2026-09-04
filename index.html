@@ -1057,50 +1057,43 @@
 
           </div>
 
-          <!-- Lado Direito: Formulário com Template KNDev's Style -->
-          <div class="contact-form-box kndev-template-box">
-            <div class="kndev-card-header">
-              <h3 class="kndev-card-title">Novo Contato via Portfólio — Matheus Militão</h3>
-              <div class="kndev-title-divider"></div>
+          <!-- Lado Direito: Formulário com Template Rico -->
+          <div class="contact-form-box">
+            <div class="form-box-header">
+              <div class="form-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                <span>Direct Contact</span>
+              </div>
+              <h3 class="form-title">Envie uma mensagem</h3>
+              <p class="form-subtitle">Tem uma proposta, projeto ou ideia em mente? Preencha os campos abaixo para envio direto à minha caixa de entrada.</p>
             </div>
 
-            <form id="contact-form" class="simple-form kndev-form">
+            <form id="contact-form" class="simple-form">
               <!-- Mensagem de Feedback / Status -->
               <div id="contact-status" class="form-status" role="alert" style="display: none;"></div>
 
-              <div class="form-row-grid">
-                <div class="form-group">
-                  <label for="form-name">Nome:</label>
-                  <input type="text" id="form-name" name="nome" required placeholder="Ex: Shaolin">
-                </div>
-
-                <div class="form-group">
-                  <label for="form-company">Empresa: <span class="label-optional">(opcional)</span></label>
-                  <input type="text" id="form-company" name="empresa" placeholder="Não informada">
-                </div>
+              <div class="form-group">
+                <label for="form-name">
+                  <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                  <span>Nome</span>
+                </label>
+                <input type="text" id="form-name" name="nome" required placeholder="Seu nome ou empresa">
               </div>
 
-              <div class="form-row-grid">
-                <div class="form-group">
-                  <label for="form-email">E-mail / WhatsApp:</label>
-                  <input type="text" id="form-email" name="email" required placeholder="shao@gmail.com ou (11) 99999-9999">
-                </div>
-
-                <div class="form-group">
-                  <label for="form-solution">Tipo de Solução Desejada:</label>
-                  <select id="form-solution" name="tipo_solucao" class="form-select">
-                    <option value="Sistemas web">Sistemas web</option>
-                    <option value="Aplicativo Mobile">Aplicativo Mobile</option>
-                    <option value="Engenharia de Software / Backend">Engenharia de Software / Backend</option>
-                    <option value="Oportunidade Tech / Outro">Oportunidade Tech / Outro</option>
-                  </select>
-                </div>
+              <div class="form-group">
+                <label for="form-email">
+                  <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                  <span>E-mail</span>
+                </label>
+                <input type="email" id="form-email" name="email" required placeholder="seuemail@exemplo.com">
               </div>
 
-              <!-- Bloco de Destaque para a Mensagem (Ideia / Necessidade) -->
-              <div class="kndev-message-card">
-                <div class="kndev-message-label">Ideia / Necessidade:</div>
-                <textarea id="form-message" name="mensagem" rows="3" required placeholder="Descreva aqui sua ideia, projeto ou necessidade..."></textarea>
+              <div class="form-group">
+                <label for="form-message">
+                  <svg class="label-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+                  <span>Mensagem</span>
+                </label>
+                <textarea id="form-message" name="mensagem" rows="4" required placeholder="Escreva os detalhes da oportunidade ou mensagem aqui..."></textarea>
               </div>
 
               <button type="submit" class="btn btn-primary btn-submit-form" style="width: 100%;">
@@ -1108,11 +1101,16 @@
                 <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
               </button>
 
-              <div class="kndev-bottom-divider"></div>
-
-              <!-- Rodapé da Mensagem / Origem -->
-              <div class="kndev-card-footer">
-                <span>Origem: portfolio-matheus-militao</span>
+              <!-- Rodapé do Card de Contato -->
+              <div class="form-card-footer">
+                <div class="form-footer-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                  <span>Envio direto & seguro</span>
+                </div>
+                <div class="form-footer-item">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                  <span>Retorno em até 24h</span>
+                </div>
               </div>
             </form>
           </div>

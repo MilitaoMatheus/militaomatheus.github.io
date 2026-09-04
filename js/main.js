@@ -210,23 +210,31 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
 
       const nameInput = document.getElementById('form-name');
-      const companyInput = document.getElementById('form-company');
       const emailInput = document.getElementById('form-email');
-      const solutionSelect = document.getElementById('form-solution');
       const messageInput = document.getElementById('form-message');
       const submitBtn = contactForm.querySelector('button[type="submit"]');
 
       const name = nameInput ? nameInput.value.trim() : '';
-      const company = companyInput && companyInput.value.trim() ? companyInput.value.trim() : 'Não informada';
-      const contact = emailInput ? emailInput.value.trim() : '';
-      const solution = solutionSelect ? solutionSelect.value : 'Sistemas web';
+      const email = emailInput ? emailInput.value.trim() : '';
       const message = messageInput ? messageInput.value.trim() : '';
 
-      if (!name || !contact || !message) {
+      if (!name || !email || !message) {
         showStatus(`
           <div class="status-content">
             <strong>Campos incompletos</strong>
-            <p>Por favor, preencha seu nome, e-mail/WhatsApp e a ideia/necessidade antes de enviar.</p>
+            <p>Por favor, preencha nome, e-mail e mensagem antes de enviar.</p>
+          </div>
+        `, 'error');
+        return;
+      }
+
+      // Validação de formato de e-mail
+      const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        showStatus(`
+          <div class="status-content">
+            <strong>E-mail inválido</strong>
+            <p>Por favor, forneça um endereço de e-mail válido para que eu possa responder.</p>
           </div>
         `, 'error');
         return;
@@ -250,18 +258,22 @@ document.addEventListener('DOMContentLoaded', () => {
         contactStatus.style.display = 'none';
       }
 
-      // Payload espelhado fielmente na referência visual do usuário
+      // Payload enriquecido com template 'box', ícones e rodapé de assinatura
+      const now = new Date();
+      const formattedDate = now.toLocaleDateString('pt-BR') + ' às ' + now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+
       const payload = {
-        _subject: 'Novo Contato via Portfólio — Matheus Militão',
+        _subject: `🌟 [Portfólio] Nova Mensagem de ${name}`,
         _template: 'box',
         _captcha: 'false',
-        _replyto: contact.includes('@') ? contact : 'matheussmilitao@gmail.com',
-        'Nome': name,
-        'Empresa': company,
-        'E-mail / WhatsApp': contact,
-        'Tipo de Solução Desejada': solution,
-        'Ideia / Necessidade': message,
-        'Origem': 'portfolio-matheus-militao'
+        _replyto: email,
+        '💼 Notificação Oficial': 'Nova Mensagem Recebida via Portfólio Web',
+        '👤 Nome do Remetente': name,
+        '✉️ E-mail para Resposta': email,
+        '💬 Mensagem Completa': message,
+        '🕒 Data e Horário do Envio': formattedDate,
+        '🌐 Origem do Envio': 'Portfólio Web Oficial • https://militaomatheus.github.io',
+        '🛡️ Rodapé do Portfólio': 'Matheus Militão • Engenheiro de Software | Soluções Web, Mobile & Cloud • https://github.com/MilitaoMatheus'
       };
 
       try {

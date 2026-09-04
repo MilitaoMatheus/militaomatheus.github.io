@@ -101,6 +101,51 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* =========================================================================
+     3.5 CARDS DE STACKS INTERATIVOS (EXPANSÃO & RECOLHIMENTO ACORDEÃO)
+     ========================================================================= */
+  const stackCards = document.querySelectorAll('.stack-card');
+
+  stackCards.forEach((card) => {
+    const toggleCard = (e) => {
+      // Evita comportamento indesejado caso haja cliques em links internos
+      if (e.target.tagName.toLowerCase() === 'a') return;
+
+      const isCurrentlyActive = card.classList.contains('active');
+
+      // Fecha todos os outros cards para manter a tela limpa e compacta (estilo acordeão)
+      stackCards.forEach((otherCard) => {
+        if (otherCard !== card) {
+          otherCard.classList.remove('active');
+          const otherBtn = otherCard.querySelector('.stack-btn-toggle');
+          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
+        }
+      });
+
+      // Alterna o estado do card clicado
+      if (isCurrentlyActive) {
+        card.classList.remove('active');
+        const btn = card.querySelector('.stack-btn-toggle');
+        if (btn) btn.setAttribute('aria-expanded', 'false');
+      } else {
+        card.classList.add('active');
+        const btn = card.querySelector('.stack-btn-toggle');
+        if (btn) btn.setAttribute('aria-expanded', 'true');
+      }
+    };
+
+    // Suporte a clique e toque
+    card.addEventListener('click', toggleCard);
+
+    // Suporte a acessibilidade de teclado (Enter ou Barra de Espaço)
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        toggleCard(e);
+      }
+    });
+  });
+
+  /* =========================================================================
      4. FILTROS DE PROJETOS (SEÇÃO 17 DO BRIEFING)
      ========================================================================= */
   const filterButtons = document.querySelectorAll('.filter-btn');

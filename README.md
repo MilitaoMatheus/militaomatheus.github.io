@@ -62,7 +62,7 @@ Linha do tempo cronológica com nós limpos e detalhamento de responsabilidades 
 - **Grid de Cards de Projetos**:
   - **[JoanaFinance](https://github.com/MilitaoMatheus/JoanaFinance)**: Gestão financeira pessoal completa em PHP e MySQL com fluxo de caixa e arquitetura MVC.
   - **[Health Treats Mobile](https://github.com/CatlopersTCC/AppHealthTreats)**: Aplicativo mobile catálogo com tabelas nutricionais desenvolvido em Flutter/Dart para TCC.
-  - **[Calculadora de Matrizes](https://github.com/MilitaoMatheus/Calculadora_Matrizes)**: Software computacional em C para álgebra linear e manipulação otimizada de ponteiros e memória.
+  - **[Clínica Tais Romagnoli](https://github.com/Desenvolvimento-Web-III/Clinica_TaisRomagnoli)**: Plataforma web médica e catálogo de serviços clínicos em arquitetura monorepo com React, TypeScript, PWA e Firebase Cloud Functions.
 
 ### 8. 📬 Contato & Conexão
 - **Canais Diretos**:

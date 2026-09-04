@@ -153,8 +153,9 @@ document.addEventListener('DOMContentLoaded', () => {
       const filter = btn.getAttribute('data-filter');
 
       projectCards.forEach((card) => {
-        const category = card.getAttribute('data-category');
-        if (filter === 'all' || category === filter) {
+        const category = card.getAttribute('data-category') || '';
+        const cats = category.split(' ');
+        if (filter === 'all' || cats.includes(filter)) {
           card.classList.remove('hidden');
         } else {
           card.classList.add('hidden');

@@ -239,53 +239,52 @@ footer.section-dark {
   border-color: #b8860b;
 }
 
-.section-light .contact-form-box {
+.section-light .contact-form-box:not(.kndev-template-box) {
   background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.08);
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
-.section-light .form-badge {
-  background: rgba(184, 134, 11, 0.08);
-  border-color: rgba(184, 134, 11, 0.25);
-  color: #b8860b;
+.section-light .kndev-template-box {
+  background: #060b17;
+  border: 1px solid #1e293b;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
 }
 
-.section-light .form-subtitle {
-  color: #4b5563;
+.section-light .kndev-template-box .kndev-card-title {
+  color: #3b82f6;
 }
 
-.section-light .form-group label {
-  color: #374151;
+.section-light .kndev-template-box .kndev-form label {
+  color: #ffffff;
 }
 
-.section-light .label-icon {
-  color: #b8860b;
+.section-light .kndev-template-box .label-optional {
+  color: #64748b;
 }
 
-.section-light .form-group input,
-.section-light .form-group textarea {
-  background: #fcfcfd;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  color: #09090b;
+.section-light .kndev-template-box input,
+.section-light .kndev-template-box select {
+  background: #0c1527;
+  border: 1px solid #1e293b;
+  color: #f8fafc;
 }
 
-.section-light .form-group input:focus,
-.section-light .form-group textarea:focus {
-  border-color: #b8860b;
-  box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
+.section-light .kndev-template-box .kndev-message-card {
+  background: #0c1527;
+  border-left: 4px solid #ef4444;
 }
 
-.section-light .form-card-footer {
-  border-top-color: rgba(0, 0, 0, 0.08);
+.section-light .kndev-template-box .kndev-message-label {
+  color: #ef4444;
 }
 
-.section-light .form-footer-item {
-  color: #6b7280;
+.section-light .kndev-template-box textarea {
+  color: #f8fafc;
 }
 
-.section-light .form-footer-item svg {
-  color: #b8860b;
+.section-light .kndev-template-box .kndev-card-footer {
+  color: #64748b;
 }
 
 .section-light .btn-primary {
@@ -1933,121 +1932,139 @@ body.modal-open {
   padding: 0.25rem 0.5rem;
 }
 
-/* Formulário com Template Rico */
-.contact-form-box {
-  background: var(--bg-card);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
+/* Formulário com Template Estilo KNDev */
+.kndev-template-box {
+  background: #060b17;
+  border: 1px solid #1e293b;
+  border-radius: 16px;
   padding: 2.25rem;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, 0.45);
   transition: all var(--transition-normal);
 }
 
-.form-box-header {
+.kndev-card-header {
   margin-bottom: 1.5rem;
 }
 
-.form-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
+.kndev-card-title {
+  color: #3b82f6;
+  font-size: 1.35rem;
   font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-accent);
-  background: var(--color-accent-subtle);
-  border: 1px solid var(--color-accent-border);
-  padding: 0.25rem 0.65rem;
-  border-radius: var(--radius-full);
-  margin-bottom: 0.75rem;
+  letter-spacing: -0.01em;
+  margin-bottom: 0.85rem;
 }
 
-.form-badge svg {
-  width: 13px;
-  height: 13px;
+.kndev-title-divider {
+  height: 2px;
+  background: #1d4ed8;
+  width: 100%;
 }
 
-.form-subtitle {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin-top: 0.35rem;
-}
-
-.simple-form {
+.kndev-form {
   display: flex;
   flex-direction: column;
-  gap: 1.25rem;
+  gap: 1.15rem;
 }
 
-.form-group {
+.form-row-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+@media (max-width: 640px) {
+  .form-row-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.kndev-form .form-group {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
 }
 
-.form-group label {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--text-muted);
+.kndev-form .form-group label {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #ffffff;
 }
 
-.label-icon {
-  width: 14px;
-  height: 14px;
-  color: var(--color-accent);
-  flex-shrink: 0;
+.label-optional {
+  font-size: 0.74rem;
+  color: #64748b;
+  font-weight: 400;
 }
 
-.form-group input,
-.form-group textarea {
-  padding: 0.85rem 1rem;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-sm);
-  color: var(--text-title);
+.kndev-form input,
+.kndev-form select {
+  padding: 0.8rem 1rem;
+  background: #0c1527;
+  border: 1px solid #1e293b;
+  border-radius: 6px;
+  color: #f8fafc;
   font-family: var(--font-sans);
-  font-size: 0.95rem;
+  font-size: 0.92rem;
   transition: all var(--transition-fast);
 }
 
-.form-group input:focus,
-.form-group textarea:focus {
+.kndev-form select {
+  cursor: pointer;
+}
+
+.kndev-form select option {
+  background-color: #0c1527;
+  color: #f8fafc;
+}
+
+.kndev-form input:focus,
+.kndev-form select:focus {
   outline: none;
-  border-color: var(--color-accent);
-  box-shadow: 0 0 0 3px var(--color-accent-glow);
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
 }
 
-/* Rodapé Interno do Card */
-.form-card-footer {
+/* Bloco de Destaque para a Mensagem (Ideia / Necessidade) */
+.kndev-message-card {
+  background: #0c1527;
+  border-radius: 8px;
+  border-left: 4px solid #ef4444;
+  padding: 1.1rem 1.25rem;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-subtle);
+  flex-direction: column;
+  gap: 0.5rem;
+  margin: 0.25rem 0;
 }
 
-.form-footer-item {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.76rem;
-  color: var(--text-muted);
+.kndev-message-label {
+  color: #ef4444;
+  font-weight: 700;
+  font-size: 0.92rem;
+}
+
+.kndev-message-card textarea {
+  background: transparent;
+  border: none;
+  color: #f8fafc;
+  font-family: var(--font-sans);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  width: 100%;
+  resize: vertical;
+  outline: none;
+  padding: 0;
+}
+
+.kndev-bottom-divider {
+  height: 1px;
+  background: #1e293b;
+  margin: 1.25rem 0 0.5rem;
+}
+
+.kndev-card-footer {
+  font-size: 0.82rem;
+  color: #64748b;
   font-family: var(--font-mono);
-}
-
-.form-footer-item svg {
-  width: 14px;
-  height: 14px;
-  color: var(--color-accent);
-  flex-shrink: 0;
 }
 
 /* Status de Feedback do Formulário */

@@ -1,9 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matheus Militão — Desenvolvedor de Software</title>
+  
+  <!-- Favicon na Guia (Computador & Engrenagem Tech) -->
+  <link rel="icon" type="image/svg+xml" href="src/favicon.svg">
+  <link rel="alternate icon" href="favicon.svg">
   
   <!-- SEO & Metatags -->
   <meta name="description" content="Portfólio de Matheus Militão — Desenvolvedor de Software. Backend, Mobile, Bancos de Dados e Soluções Digitais.">
@@ -20,18 +24,6 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-
-  <!-- Inicializador Anti-FOUC de Tema -->
-  <script>
-    (function() {
-      const saved = localStorage.getItem('theme');
-      if (saved === 'light') {
-        document.documentElement.setAttribute('data-theme', 'light');
-      } else {
-        document.documentElement.setAttribute('data-theme', 'dark');
-      }
-    })();
-  </script>
 
   <!-- Estilos Customizados -->
   <link rel="stylesheet" href="css/style.css">
@@ -64,11 +56,6 @@
       </nav>
 
       <div class="nav-actions">
-        <!-- Alternador Dark / Light Mode -->
-        <button id="theme-toggle" class="btn-icon-theme" aria-label="Alternar modo claro/escuro" title="Alternar tema">
-          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </button>
 
         <!-- CTA Principal da Navbar -->
         <a href="#contato" class="btn-nav-cta">
@@ -183,7 +170,7 @@
     <!-- =========================================================================
          3. SOBRE MIM (Layout em Duas Colunas + Cards Informativos)
          ========================================================================= -->
-    <section id="sobre" class="section">
+    <section id="sobre" class="section section-light">
       <div class="container">
         
         <div class="sobre-grid">
@@ -302,7 +289,7 @@
     <!-- =========================================================================
          5. SKILLS / TECNOLOGIAS (Cards de Stacks em 2 Colunas com Expansão & Logos Reais)
          ========================================================================= -->
-    <section id="skills" class="section">
+    <section id="skills" class="section section-dark">
       <div class="container">
         
         <div class="section-header">
@@ -674,7 +661,7 @@
     <!-- =========================================================================
          6. EXPERIÊNCIA (Timeline Profissional Limpa)
          ========================================================================= -->
-    <section id="experiencia" class="section">
+    <section id="experiencia" class="section section-light">
       <div class="container">
         
         <div class="section-header">
@@ -788,7 +775,7 @@
     <!-- =========================================================================
          7. PROJETOS (Projeto em Destaque Principal + Filtros + Grid de Cards)
          ========================================================================= -->
-    <section id="projetos" class="section">
+    <section id="projetos" class="section section-dark">
       <div class="container">
         
         <div class="section-header">
@@ -1007,7 +994,7 @@
     <!-- =========================================================================
          8. CONTATO (Chamada + Botões Diretos + Formulário Simples)
          ========================================================================= -->
-    <section id="contato" class="section contact-section">
+    <section id="contato" class="section contact-section section-light">
       <div class="container">
         
         <div class="contact-header">
@@ -1105,7 +1092,7 @@
   <!-- =========================================================================
        9. FOOTER (Minimalista, frases e copyright)
        ========================================================================= -->
-  <footer class="footer">
+  <footer class="footer section-dark">
     <div class="container footer-content">
       <div class="footer-brand-side">
         <strong class="footer-author">Desenvolvido por Matheus Militão.</strong>

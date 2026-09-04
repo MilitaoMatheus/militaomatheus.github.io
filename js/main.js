@@ -6,34 +6,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  /* =========================================================================
-     1. TEMA CLARO / ESCURO (DARK/LIGHT MODE COM PERSISTÊNCIA)
-     ========================================================================= */
-  const themeToggle = document.getElementById('theme-toggle');
-
-  const setTheme = (theme) => {
-    document.documentElement.setAttribute('data-theme', theme);
-    try {
-      localStorage.setItem('theme', theme);
-    } catch (e) {}
-
-    if (themeToggle) {
-      const isLight = theme === 'light';
-      themeToggle.setAttribute('title', isLight ? 'Alternar para Modo Escuro' : 'Alternar para Modo Claro');
-      themeToggle.setAttribute('aria-label', isLight ? 'Alternar para Modo Escuro' : 'Alternar para Modo Claro');
-    }
-  };
-
-  if (themeToggle) {
-    const currentTheme = document.documentElement.getAttribute('data-theme') || 'dark';
-    setTheme(currentTheme);
-
-    themeToggle.addEventListener('click', () => {
-      const active = document.documentElement.getAttribute('data-theme') || 'dark';
-      const nextTheme = active === 'light' ? 'dark' : 'light';
-      setTheme(nextTheme);
-    });
-  }
 
   /* =========================================================================
      2. NAVBAR: SCROLL EFFECT & SCROLL SPY

@@ -245,22 +245,8 @@ footer.section-dark {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
 }
 
-.section-light .form-badge {
-  background: rgba(184, 134, 11, 0.08);
-  border-color: rgba(184, 134, 11, 0.25);
-  color: #b8860b;
-}
-
-.section-light .form-subtitle {
-  color: #4b5563;
-}
-
 .section-light .form-group label {
   color: #374151;
-}
-
-.section-light .label-icon {
-  color: #b8860b;
 }
 
 .section-light .form-group input,
@@ -274,18 +260,6 @@ footer.section-dark {
 .section-light .form-group textarea:focus {
   border-color: #b8860b;
   box-shadow: 0 0 0 3px rgba(184, 134, 11, 0.15);
-}
-
-.section-light .form-card-footer {
-  border-top-color: rgba(0, 0, 0, 0.08);
-}
-
-.section-light .form-footer-item {
-  color: #6b7280;
-}
-
-.section-light .form-footer-item svg {
-  color: #b8860b;
 }
 
 .section-light .btn-primary {
@@ -1933,46 +1907,12 @@ body.modal-open {
   padding: 0.25rem 0.5rem;
 }
 
-/* Formulário com Template Rico */
+/* Formulário Simples */
 .contact-form-box {
   background: var(--bg-card);
   border: 1px solid var(--border-subtle);
   border-radius: var(--radius-md);
   padding: 2.25rem;
-  transition: all var(--transition-normal);
-}
-
-.form-box-header {
-  margin-bottom: 1.5rem;
-}
-
-.form-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-family: var(--font-mono);
-  font-size: 0.72rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--color-accent);
-  background: var(--color-accent-subtle);
-  border: 1px solid var(--color-accent-border);
-  padding: 0.25rem 0.65rem;
-  border-radius: var(--radius-full);
-  margin-bottom: 0.75rem;
-}
-
-.form-badge svg {
-  width: 13px;
-  height: 13px;
-}
-
-.form-subtitle {
-  font-size: 0.88rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-  margin-top: 0.35rem;
 }
 
 .simple-form {
@@ -1988,19 +1928,9 @@ body.modal-open {
 }
 
 .form-group label {
-  display: flex;
-  align-items: center;
-  gap: 0.45rem;
   font-size: 0.85rem;
   font-weight: 600;
   color: var(--text-muted);
-}
-
-.label-icon {
-  width: 14px;
-  height: 14px;
-  color: var(--color-accent);
-  flex-shrink: 0;
 }
 
 .form-group input,
@@ -2020,34 +1950,6 @@ body.modal-open {
   outline: none;
   border-color: var(--color-accent);
   box-shadow: 0 0 0 3px var(--color-accent-glow);
-}
-
-/* Rodapé Interno do Card */
-.form-card-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-top: 0.5rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-subtle);
-}
-
-.form-footer-item {
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.76rem;
-  color: var(--text-muted);
-  font-family: var(--font-mono);
-}
-
-.form-footer-item svg {
-  width: 14px;
-  height: 14px;
-  color: var(--color-accent);
-  flex-shrink: 0;
 }
 
 /* Status de Feedback do Formulário */

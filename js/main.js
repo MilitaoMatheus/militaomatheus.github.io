@@ -258,22 +258,16 @@ document.addEventListener('DOMContentLoaded', () => {
         contactStatus.style.display = 'none';
       }
 
-      // Payload enriquecido com template 'box', ícones e rodapé de assinatura
-      const now = new Date();
-      const formattedDate = now.toLocaleDateString('pt-BR') + ' às ' + now.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
-
+      // Payload estruturado alinhado à referência de notificação
       const payload = {
-        _subject: `🌟 [Portfólio] Nova Mensagem de ${name}`,
+        _subject: `Novo Contato via Portfólio — Matheus Militão`,
         _template: 'box',
         _captcha: 'false',
         _replyto: email,
-        '💼 Notificação Oficial': 'Nova Mensagem Recebida via Portfólio Web',
-        '👤 Nome do Remetente': name,
-        '✉️ E-mail para Resposta': email,
-        '💬 Mensagem Completa': message,
-        '🕒 Data e Horário do Envio': formattedDate,
-        '🌐 Origem do Envio': 'Portfólio Web Oficial • https://militaomatheus.github.io',
-        '🛡️ Rodapé do Portfólio': 'Matheus Militão • Engenheiro de Software | Soluções Web, Mobile & Cloud • https://github.com/MilitaoMatheus'
+        'Nome': name,
+        'E-mail / Contato': email,
+        'Ideia / Mensagem': message,
+        'Origem': 'portfolio-matheus-militao'
       };
 
       try {

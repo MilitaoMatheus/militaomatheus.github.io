@@ -715,6 +715,29 @@
         </div>
 
       </div>
+
+      <!-- Modal Overlay de Stack em Evidência com Fundo Desfocado (Blur) -->
+      <div class="stack-modal-backdrop" id="stack-modal-backdrop" aria-hidden="true"></div>
+      <div class="stack-modal-wrapper" id="stack-modal-wrapper" role="dialog" aria-modal="true" aria-hidden="true">
+        <div class="stack-modal-card" id="stack-modal-card">
+          <div class="stack-modal-header">
+            <div class="stack-modal-header-left">
+              <div class="stack-modal-icon" id="modal-stack-icon"></div>
+              <div class="stack-modal-title-wrap">
+                <span class="stack-modal-num" id="modal-stack-num">01</span>
+                <h3 class="stack-modal-title" id="modal-stack-title">Stack</h3>
+              </div>
+            </div>
+            <button class="stack-modal-close" id="modal-close-btn" aria-label="Fechar detalhes da stack">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+            </button>
+          </div>
+          <p class="stack-modal-summary" id="modal-stack-summary"></p>
+          <div class="stack-modal-body" id="modal-stack-body">
+            <!-- Injetado dinamicamente via JS a partir do card clicado -->
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- =========================================================================

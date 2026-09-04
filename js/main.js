@@ -101,48 +101,70 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   /* =========================================================================
-     3.5 CARDS DE STACKS INTERATIVOS (EXPANSÃO & RECOLHIMENTO ACORDEÃO)
+     3.5 CARDS DE STACKS INTERATIVOS (MODAL OVERLAY EM EVIDÊNCIA COM BLUR)
      ========================================================================= */
   const stackCards = document.querySelectorAll('.stack-card');
+  const modalBackdrop = document.getElementById('stack-modal-backdrop');
+  const modalWrapper = document.getElementById('stack-modal-wrapper');
+  const modalIcon = document.getElementById('modal-stack-icon');
+  const modalNum = document.getElementById('modal-stack-num');
+  const modalTitle = document.getElementById('modal-stack-title');
+  const modalSummary = document.getElementById('modal-stack-summary');
+  const modalBody = document.getElementById('modal-stack-body');
+  const modalCloseBtn = document.getElementById('modal-close-btn');
+
+  const openStackModal = (card) => {
+    const num = card.querySelector('.stack-num')?.textContent.trim() || '';
+    const iconHtml = card.querySelector('.stack-main-icon')?.innerHTML || '';
+    const title = card.querySelector('.stack-title')?.textContent.trim() || '';
+    const summary = card.querySelector('.stack-summary')?.textContent.trim() || '';
+    const itemsHtml = card.querySelector('.tech-items-grid')?.innerHTML || '';
+
+    if (modalNum) modalNum.textContent = `STACK ${num}`;
+    if (modalIcon) modalIcon.innerHTML = iconHtml;
+    if (modalTitle) modalTitle.textContent = title;
+    if (modalSummary) modalSummary.textContent = summary;
+    if (modalBody) modalBody.innerHTML = `<div class="tech-items-grid">${itemsHtml}</div>`;
+
+    modalBackdrop?.classList.add('open');
+    modalWrapper?.classList.add('open');
+    modalWrapper?.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('modal-open');
+  };
+
+  const closeStackModal = () => {
+    modalBackdrop?.classList.remove('open');
+    modalWrapper?.classList.remove('open');
+    modalWrapper?.setAttribute('aria-hidden', 'true');
+    document.body.classList.remove('modal-open');
+  };
 
   stackCards.forEach((card) => {
-    const toggleCard = (e) => {
-      // Evita comportamento indesejado caso haja cliques em links internos
+    card.addEventListener('click', (e) => {
       if (e.target.tagName.toLowerCase() === 'a') return;
+      openStackModal(card);
+    });
 
-      const isCurrentlyActive = card.classList.contains('active');
-
-      // Fecha todos os outros cards para manter a tela limpa e compacta (estilo acordeão)
-      stackCards.forEach((otherCard) => {
-        if (otherCard !== card) {
-          otherCard.classList.remove('active');
-          const otherBtn = otherCard.querySelector('.stack-btn-toggle');
-          if (otherBtn) otherBtn.setAttribute('aria-expanded', 'false');
-        }
-      });
-
-      // Alterna o estado do card clicado
-      if (isCurrentlyActive) {
-        card.classList.remove('active');
-        const btn = card.querySelector('.stack-btn-toggle');
-        if (btn) btn.setAttribute('aria-expanded', 'false');
-      } else {
-        card.classList.add('active');
-        const btn = card.querySelector('.stack-btn-toggle');
-        if (btn) btn.setAttribute('aria-expanded', 'true');
-      }
-    };
-
-    // Suporte a clique e toque
-    card.addEventListener('click', toggleCard);
-
-    // Suporte a acessibilidade de teclado (Enter ou Barra de Espaço)
     card.addEventListener('keydown', (e) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        toggleCard(e);
+        openStackModal(card);
       }
     });
+  });
+
+  modalCloseBtn?.addEventListener('click', closeStackModal);
+  modalBackdrop?.addEventListener('click', closeStackModal);
+  modalWrapper?.addEventListener('click', (e) => {
+    if (e.target === modalWrapper) {
+      closeStackModal();
+    }
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modalWrapper?.classList.contains('open')) {
+      closeStackModal();
+    }
   });
 
   /* =========================================================================
